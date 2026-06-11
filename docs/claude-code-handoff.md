@@ -1,6 +1,6 @@
 # Claude Code Handoff: NewFile macOS App
 
-Last updated: 2026-06-11 22:30 Asia/Shanghai
+Last updated: 2026-06-12 12:35 Asia/Shanghai
 
 ## Goal
 
@@ -17,6 +17,15 @@ The current product direction is not a fixed list of file extensions. The user w
 Do not restore the older menu with `Text File (.txt)`, `Markdown File (.md)`, `JSON File (.json)`, `CSV File (.csv)`, and `HTML File (.html)`.
 
 ## Current State
+
+**Submitted to Mac App Store — awaiting review (as of 2026-06-12).**
+
+- App Store name: NuFile
+- Bundle display name (on user's Mac): NewFile
+- Submission ID: 924cbb5f-fea4-49a4-8a57-ea7955fb2707
+- Price: Free
+- Support page: https://github.com/chemark/nufile-support
+- Privacy policy: https://github.com/chemark/nufile-support/blob/main/privacy.md
 
 Core feature is working end-to-end. Manually verified in Finder: right-clicking a folder and choosing `New File` creates an empty `Untitled` file in that folder.
 
@@ -340,7 +349,12 @@ Be careful not to delete generated files unless the user explicitly asks.
 
 ## Recommended Next Steps
 
-### App Store Submission (remaining work)
+### After App Store Approval
+
+- Sign up for paid app agreement once a US/HK bank account is available, then update pricing.
+- For next version: bump `MARKETING_VERSION` in `Project.swift`, archive, export, upload.
+
+### App Store Submission (completed 2026-06-12)
 
 Distribution signing is fully configured and Release build verified. Steps remaining:
 

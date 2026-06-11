@@ -6,3 +6,5 @@ node_modules/
 *.xcodeproj/xcuserdata/
 *.xcuserstate
 .tuist-cache/
+*.xcarchive/
+NewFile-export/
