@@ -21,10 +21,6 @@ struct FileCreationService {
         self.fileManager = fileManager
     }
 
-    func availableURL(for template: FileTemplate, in directoryURL: URL) throws -> URL {
-        try availableURL(baseName: "Untitled", fileExtension: template.fileExtension, in: directoryURL)
-    }
-
     func availableUntitledFileURL(in directoryURL: URL) throws -> URL {
         try availableURL(baseName: "Untitled", fileExtension: nil, in: directoryURL)
     }
@@ -49,14 +45,6 @@ struct FileCreationService {
             }
             index += 1
         }
-    }
-
-    @discardableResult
-    func createEmptyFile(template: FileTemplate, in directoryURL: URL) throws -> URL {
-        let targetURL = try availableURL(for: template, in: directoryURL)
-        let data = Data()
-        try data.write(to: targetURL, options: [.withoutOverwriting])
-        return targetURL
     }
 
     @discardableResult

@@ -7,28 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00B7B6DEBF5B70F4880FE14F /* TemplatePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE68D9055FA0E048DAEC398A /* TemplatePreferences.swift */; };
 		072533EB58A0987B5352997E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E160F50E4DF04E1F5D8892 /* ContentView.swift */; };
 		0FA9C9961A232AD13A02914E /* AppIconSource.svg in Resources */ = {isa = PBXBuildFile; fileRef = E8354B95C82C9BC7E20E100B /* AppIconSource.svg */; };
 		15343E7C59DE69A1D0CF9F64 /* FileCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D08B34EA62791833DD93540 /* FileCreationService.swift */; };
 		291AFDBADFEC938ADF3BA98E /* TuistAssets+NewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2256947477AE13AEBF827E9 /* TuistAssets+NewFile.swift */; };
-		2EC038419B4EACCF34C3666B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E3C18FCD0569143712917 /* SettingsView.swift */; };
 		304442B0ECDCAEAA48B7C91E /* FileCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D08B34EA62791833DD93540 /* FileCreationService.swift */; };
-		4523C0C392F5AD21FE76A5C2 /* FileTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DF126F560AFA02449B9A0F /* FileTemplate.swift */; };
-		5571653DFDF60989E224CDD0 /* TemplatePreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9477292D216182E914102CC3 /* TemplatePreferencesTests.swift */; };
 		5A20C947DA25DF53A35904DC /* NewFileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B826B823D7510039A4D4354 /* NewFileApp.swift */; };
 		7B63B4C4BE8CE095ACFC830A /* TuistBundle+NewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F7F888633C2069A242FBF /* TuistBundle+NewFile.swift */; };
 		889F1BFDEF46ADEFEA47FB82 /* FileCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D08B34EA62791833DD93540 /* FileCreationService.swift */; };
 		979606F27994D14241109D97 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 87B6D7133627468227C5E9FA /* PrivacyInfo.xcprivacy */; };
-		9F2F7623D733584FCEE4F672 /* TemplatePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE68D9055FA0E048DAEC398A /* TemplatePreferences.swift */; };
 		A0059B4CDBFA1094F4FB88C3 /* TuistBundle+NewFileFinderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B6978720E5FA3CFBEEF4F5 /* TuistBundle+NewFileFinderExtension.swift */; };
-		A5468DBA38E58C980FA26593 /* FileTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DF126F560AFA02449B9A0F /* FileTemplate.swift */; };
 		B5F733D4C87D577D4C684228 /* FileCreationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B31B73BB3FD06FC72A9067 /* FileCreationServiceTests.swift */; };
 		BBE8BDB703C507F5DE06D691 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 579F3FB1EFD25F9AD7C9412E /* PrivacyInfo.xcprivacy */; };
-		BF0F1313D48BF7A347BDAD2B /* FileTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DF126F560AFA02449B9A0F /* FileTemplate.swift */; };
 		CDFC735A1AC78E0F86DA8F42 /* NewFileFinderExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 45DAFD2292060A5FD928DE93 /* NewFileFinderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D393EF2DAF9CE6BCE627A720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B54127BCB974D35540E466 /* Assets.xcassets */; };
-		DAA781D619F1B2AD33795298 /* TemplatePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE68D9055FA0E048DAEC398A /* TemplatePreferences.swift */; };
 		E143281B15A4F82E1B1B082A /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A4E21F69B57D9286BE539 /* FinderSync.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,7 +78,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		040E3C18FCD0569143712917 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		14B54127BCB974D35540E466 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3604298230DEFBCC8C0527BF /* NewFileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NewFileTests-Info.plist"; sourceTree = "<group>"; };
 		3D08B34EA62791833DD93540 /* FileCreationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationService.swift; sourceTree = "<group>"; };
@@ -96,10 +87,8 @@
 		4C3A4E21F69B57D9286BE539 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		573882985654C9F785F8A023 /* NewFile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NewFile.entitlements; sourceTree = "<group>"; };
 		579F3FB1EFD25F9AD7C9412E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		72DF126F560AFA02449B9A0F /* FileTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTemplate.swift; sourceTree = "<group>"; };
 		825CC3FFDE8D607EAF50E885 /* NewFile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NewFile-Info.plist"; sourceTree = "<group>"; };
 		87B6D7133627468227C5E9FA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		9477292D216182E914102CC3 /* TemplatePreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePreferencesTests.swift; sourceTree = "<group>"; };
 		9F32EBCBCA983217D1E98F8E /* NewFileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewFileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE02348385B1E629AAB3AF1 /* NewFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B6978720E5FA3CFBEEF4F5 /* TuistBundle+NewFileFinderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+NewFileFinderExtension.swift"; sourceTree = "<group>"; };
@@ -109,7 +98,6 @@
 		E8354B95C82C9BC7E20E100B /* AppIconSource.svg */ = {isa = PBXFileReference; path = AppIconSource.svg; sourceTree = "<group>"; };
 		E86FAE07A9D12BA99F79D995 /* NewFileFinderExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NewFileFinderExtension.entitlements; sourceTree = "<group>"; };
 		FC5F7F888633C2069A242FBF /* TuistBundle+NewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+NewFile.swift"; sourceTree = "<group>"; };
-		FE68D9055FA0E048DAEC398A /* TemplatePreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePreferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				46B31B73BB3FD06FC72A9067 /* FileCreationServiceTests.swift */,
-				9477292D216182E914102CC3 /* TemplatePreferencesTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -233,7 +220,6 @@
 			children = (
 				E1E160F50E4DF04E1F5D8892 /* ContentView.swift */,
 				4B826B823D7510039A4D4354 /* NewFileApp.swift */,
-				040E3C18FCD0569143712917 /* SettingsView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -242,8 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				3D08B34EA62791833DD93540 /* FileCreationService.swift */,
-				72DF126F560AFA02449B9A0F /* FileTemplate.swift */,
-				FE68D9055FA0E048DAEC398A /* TemplatePreferences.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -396,10 +380,7 @@
 				7B63B4C4BE8CE095ACFC830A /* TuistBundle+NewFile.swift in Sources */,
 				072533EB58A0987B5352997E /* ContentView.swift in Sources */,
 				5A20C947DA25DF53A35904DC /* NewFileApp.swift in Sources */,
-				2EC038419B4EACCF34C3666B /* SettingsView.swift in Sources */,
 				889F1BFDEF46ADEFEA47FB82 /* FileCreationService.swift in Sources */,
-				4523C0C392F5AD21FE76A5C2 /* FileTemplate.swift in Sources */,
-				DAA781D619F1B2AD33795298 /* TemplatePreferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,10 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				304442B0ECDCAEAA48B7C91E /* FileCreationService.swift in Sources */,
-				A5468DBA38E58C980FA26593 /* FileTemplate.swift in Sources */,
-				9F2F7623D733584FCEE4F672 /* TemplatePreferences.swift in Sources */,
 				B5F733D4C87D577D4C684228 /* FileCreationServiceTests.swift in Sources */,
-				5571653DFDF60989E224CDD0 /* TemplatePreferencesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,8 +400,6 @@
 				A0059B4CDBFA1094F4FB88C3 /* TuistBundle+NewFileFinderExtension.swift in Sources */,
 				E143281B15A4F82E1B1B082A /* FinderSync.swift in Sources */,
 				15343E7C59DE69A1D0CF9F64 /* FileCreationService.swift in Sources */,
-				BF0F1313D48BF7A347BDAD2B /* FileTemplate.swift in Sources */,
-				00B7B6DEBF5B70F4880FE14F /* TemplatePreferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

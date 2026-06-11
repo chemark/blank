@@ -1,6 +1,6 @@
 # Claude Code Handoff: NewFile macOS App
 
-Last updated: 2026-06-11 22:00 Asia/Shanghai
+Last updated: 2026-06-11 22:30 Asia/Shanghai
 
 ## Goal
 
@@ -340,15 +340,37 @@ Be careful not to delete generated files unless the user explicitly asks.
 
 ## Recommended Next Steps
 
-1. Polish and UX:
-   - Consider triggering Finder's inline rename mode automatically after creation (so the user can start typing the new name immediately, like `New Folder` does). This requires calling `NSWorkspace.shared.activateFileViewerSelecting([createdURL])` — already in place — but inline rename from an extension is not straightforward; investigate `NSWorkspace` or AppleScript options.
-   - Menu title localization if the app targets non-English users.
+### App Store Submission (remaining work)
 
-2. Cleanup:
-   - Decide whether to keep `TemplatePreferences` and the old fixed-template code paths. They are still referenced by tests but serve no active UX purpose.
-   - Decide whether the app group is still needed now that there is no inter-process preference sharing.
+Distribution signing is not yet configured. Development signing is in place and
+works for local testing. Before submitting to the Mac App Store:
 
-3. Before shipping to Mac App Store:
-   - Update App Store review notes (`docs/app-store/review-notes.md`) to include the justification for `com.apple.security.temporary-exception.files.absolute-path.read-write`.
-   - Confirm archive/distribution signing path (separate Distribution provisioning profiles may be needed).
-   - Run final `xcodebuild test` and `./script/build_and_run.sh --verify` before archiving.
+1. **Create Distribution certificate**
+   - In App Store Connect (or Xcode): create a "Mac App Distribution" certificate.
+   - Install the `.cer` file locally.
+
+2. **Create Mac App Store provisioning profiles**
+   - Host app profile: `NewFile Mac App Store` (bundle id `com.xingshuhao.NewFile`)
+   - Extension profile: `NewFile Finder Extension Mac App Store`
+     (bundle id `com.xingshuhao.NewFile.FinderExtension`)
+   - Both profiles need the `com.apple.security.temporary-exception.files.absolute-path.read-write`
+     capability enabled (contact Apple if the portal does not expose it; it is allowed
+     under the temporary exceptions entitlement policy).
+
+3. **Update `Project.swift` signing settings**
+   - Add `appDistributionSettings` and `extensionDistributionSettings` mirroring the
+     Development settings but referencing the new Distribution profiles.
+   - Gate these on the `Release` configuration.
+
+4. **Archive and upload**
+   ```sh
+   xcodebuild -project NewFile.xcodeproj -scheme NewFile \
+     -configuration Release -archivePath NewFile.xcarchive archive
+   xcodebuild -exportArchive -archivePath NewFile.xcarchive \
+     -exportOptionsPlist ExportOptions.plist -exportPath NewFile-export
+   ```
+   Then upload via Xcode Organizer or `xcrun altool`.
+
+5. **Review notes**
+   - `docs/app-store/review-notes.md` is up to date, including the entitlement
+     justification for `temporary-exception.files.absolute-path.read-write`.

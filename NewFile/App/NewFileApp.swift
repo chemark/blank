@@ -3,14 +3,10 @@ import SwiftUI
 @main
 struct NewFileApp: App {
     var body: some Scene {
-        WindowGroup {
+        Window("NewFile", id: "main") {
             ContentView()
                 .frame(minWidth: 520, minHeight: 360)
         }
         .windowResizability(.contentMinSize)
-
-        Settings {
-            SettingsView()
-        }
     }
 }

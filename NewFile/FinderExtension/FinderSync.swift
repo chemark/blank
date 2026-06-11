@@ -3,7 +3,6 @@ import FinderSync
 import os
 
 final class FinderSync: FIFinderSync {
-    private let preferences = TemplatePreferences()
     private let fileCreationService = FileCreationService()
     private let logger = Logger(subsystem: "com.xingshuhao.NewFile.finder-extension", category: "FinderSync")
 
