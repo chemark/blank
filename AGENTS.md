@@ -49,18 +49,31 @@ Important: after running tests with `CODE_SIGNING_ALLOWED=NO`, run `./script/bui
 
 ## Signing And Provisioning
 
-The project is configured for manual development signing.
+Both Development (Debug) and Distribution (Release) are configured for manual signing.
 
-- Apple TeamIdentifier: `6SKPUQN55Z`
-- Local signing identity: `Apple Development: hoshikihao@proton.me (ABD492V5HK)`
-- App bundle id: `com.xingshuhao.NewFile`
-- Finder extension bundle id: `com.xingshuhao.NewFile.FinderExtension`
-- App group: `group.com.xingshuhao.NewFile`
+### Development (Debug)
+
+- Signing identity: `Apple Development: hoshikihao@proton.me (ABD492V5HK)`
 - Host provisioning profile: `NewFile Mac Development`
 - Host profile UUID: `b3514bbe-c3a5-4cbc-afb8-32bcd8fa35d6`
 - Extension provisioning profile: `NewFile Finder Extension Mac Development`
 - Extension profile UUID: `2d41ac9e-5a21-4d26-bedd-1ebbd8c0e39d`
 - Registered Mac device UDID: `00008112-0004095C2E08201E`
+
+### Distribution (Release / Mac App Store)
+
+- Signing identity: `3rd Party Mac Developer Application: hao hoshiki (6SKPUQN55Z)`
+- Distribution certificate ASC id: `XR849UQQ74`
+- Host provisioning profile: `NewFile Mac App Store`
+- Host profile UUID: `9515779f-885c-4bd2-9d45-82a989b38e36`
+- Extension provisioning profile: `NewFile Finder Extension Mac App Store`
+- Extension profile UUID: `6cd9bbbc-1759-4f40-b862-a2f911ad2300`
+
+### Common
+
+- Apple TeamIdentifier: `6SKPUQN55Z`
+- App bundle id: `com.xingshuhao.NewFile`
+- Finder extension bundle id: `com.xingshuhao.NewFile.FinderExtension`
 
 Do not switch back to ad-hoc signing for Finder Sync testing. Unsigned/ad-hoc builds may run the host app but Finder may not load or execute the extension correctly.
 

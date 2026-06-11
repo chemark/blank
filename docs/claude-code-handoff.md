@@ -342,35 +342,42 @@ Be careful not to delete generated files unless the user explicitly asks.
 
 ### App Store Submission (remaining work)
 
-Distribution signing is not yet configured. Development signing is in place and
-works for local testing. Before submitting to the Mac App Store:
+Distribution signing is fully configured and Release build verified. Steps remaining:
 
-1. **Create Distribution certificate**
-   - In App Store Connect (or Xcode): create a "Mac App Distribution" certificate.
-   - Install the `.cer` file locally.
-
-2. **Create Mac App Store provisioning profiles**
-   - Host app profile: `NewFile Mac App Store` (bundle id `com.xingshuhao.NewFile`)
-   - Extension profile: `NewFile Finder Extension Mac App Store`
-     (bundle id `com.xingshuhao.NewFile.FinderExtension`)
-   - Both profiles need the `com.apple.security.temporary-exception.files.absolute-path.read-write`
-     capability enabled (contact Apple if the portal does not expose it; it is allowed
-     under the temporary exceptions entitlement policy).
-
-3. **Update `Project.swift` signing settings**
-   - Add `appDistributionSettings` and `extensionDistributionSettings` mirroring the
-     Development settings but referencing the new Distribution profiles.
-   - Gate these on the `Release` configuration.
-
-4. **Archive and upload**
+1. **Archive**
    ```sh
    xcodebuild -project NewFile.xcodeproj -scheme NewFile \
-     -configuration Release -archivePath NewFile.xcarchive archive
+     -configuration Release -archivePath NewFile.xcarchive \
+     -allowProvisioningUpdates archive
+   ```
+
+2. **Export for Mac App Store**
+   Create `ExportOptions.plist`:
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+   <plist version="1.0">
+   <dict>
+       <key>method</key>
+       <string>app-store</string>
+       <key>teamID</key>
+       <string>6SKPUQN55Z</string>
+   </dict>
+   </plist>
+   ```
+   Then:
+   ```sh
    xcodebuild -exportArchive -archivePath NewFile.xcarchive \
      -exportOptionsPlist ExportOptions.plist -exportPath NewFile-export
    ```
-   Then upload via Xcode Organizer or `xcrun altool`.
 
-5. **Review notes**
-   - `docs/app-store/review-notes.md` is up to date, including the entitlement
-     justification for `temporary-exception.files.absolute-path.read-write`.
+3. **Upload**
+   Use Xcode Organizer (open `NewFile.xcarchive`) or:
+   ```sh
+   xcrun altool --upload-app -f NewFile-export/NewFile.pkg \
+     --apiKey H96X8J37ZU --apiIssuer bc57f3ee-053c-4a19-a1d4-f2ff402adf19 \
+     --apiPrivateKeyPath /Users/xingshuhao/Downloads/AuthKey_H96X8J37ZU.p8
+   ```
+
+4. **Review notes**
+   `docs/app-store/review-notes.md` is up to date with entitlement justification.

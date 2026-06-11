@@ -2,7 +2,6 @@ import ProjectDescription
 
 let appBundleId = "com.xingshuhao.NewFile"
 let extensionBundleId = "\(appBundleId).FinderExtension"
-let appGroup = "group.com.xingshuhao.NewFile"
 
 let sharedSettings: SettingsDictionary = [
     "MACOSX_DEPLOYMENT_TARGET": "26.0",
@@ -28,6 +27,20 @@ let extensionSigningSettings: SettingsDictionary = [
     "CODE_SIGN_STYLE": "Manual",
     "CODE_SIGN_IDENTITY": "Apple Development",
     "PROVISIONING_PROFILE_SPECIFIER": "NewFile Finder Extension Mac Development",
+]
+
+let appDistributionSettings: SettingsDictionary = [
+    "DEVELOPMENT_TEAM": "6SKPUQN55Z",
+    "CODE_SIGN_STYLE": "Manual",
+    "CODE_SIGN_IDENTITY": "3rd Party Mac Developer Application",
+    "PROVISIONING_PROFILE_SPECIFIER": "NewFile Mac App Store",
+]
+
+let extensionDistributionSettings: SettingsDictionary = [
+    "DEVELOPMENT_TEAM": "6SKPUQN55Z",
+    "CODE_SIGN_STYLE": "Manual",
+    "CODE_SIGN_IDENTITY": "3rd Party Mac Developer Application",
+    "PROVISIONING_PROFILE_SPECIFIER": "NewFile Finder Extension Mac App Store",
 ]
 
 let project = Project(
@@ -62,10 +75,11 @@ let project = Project(
             dependencies: [
                 .target(name: "NewFileFinderExtension"),
             ],
-            settings: .settings(base: [
-                "PRODUCT_NAME": "NewFile",
-                "INFOPLIST_KEY_LSMinimumSystemVersion": "26.0",
-            ].merging(appSigningSettings) { current, _ in current })
+            settings: .settings(
+                base: ["PRODUCT_NAME": "NewFile", "INFOPLIST_KEY_LSMinimumSystemVersion": "26.0"],
+                debug: appSigningSettings,
+                release: appDistributionSettings
+            )
         ),
         .target(
             name: "NewFileFinderExtension",
@@ -90,10 +104,11 @@ let project = Project(
                 "NewFile/FinderExtensionResources/**",
             ],
             entitlements: "NewFile/NewFileFinderExtension.entitlements",
-            settings: .settings(base: [
-                "PRODUCT_NAME": "NewFileFinderExtension",
-                "INFOPLIST_KEY_LSMinimumSystemVersion": "26.0",
-            ].merging(extensionSigningSettings) { current, _ in current })
+            settings: .settings(
+                base: ["PRODUCT_NAME": "NewFileFinderExtension", "INFOPLIST_KEY_LSMinimumSystemVersion": "26.0"],
+                debug: extensionSigningSettings,
+                release: extensionDistributionSettings
+            )
         ),
         .target(
             name: "NewFileTests",
