@@ -1,0 +1,10 @@
+{
+  "name": "newfile-appstore-tools",
+  "private": true,
+  "scripts": {
+    "asc": "asc"
+  },
+  "devDependencies": {
+    "@onmyway133/asc-cli": "^1.0.6"
+  }
+}

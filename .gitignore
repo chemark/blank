@@ -1,0 +1,8 @@
+.DS_Store
+.derivedData/
+DerivedData/
+node_modules/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcuserstate
+.tuist-cache/
