@@ -91,6 +91,7 @@ let project = Project(
                 "CFBundleDisplayName": "NewFile Finder Extension",
                 "CFBundleShortVersionString": "$(MARKETING_VERSION)",
                 "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
+                "LSUIElement": true,
                 "NSExtension": [
                     "NSExtensionPointIdentifier": "com.apple.FinderSync",
                     "NSExtensionPrincipalClass": "$(PRODUCT_MODULE_NAME).FinderSync",
