@@ -7,11 +7,21 @@ SCHEME="NewFile"
 CONFIGURATION="Debug"
 DERIVED_DATA_PATH="$PROJECT_ROOT/.derivedData"
 APP_PATH="$DERIVED_DATA_PATH/Build/Products/$CONFIGURATION/Blank.app"
-INSTALL_DIR="$HOME/Applications"
+INSTALL_DIR="/Applications"
 INSTALLED_APP_PATH="$INSTALL_DIR/Blank.app"
-DERIVED_DEBUG_EXTENSION_PATH="$DERIVED_DATA_PATH/Build/Products/Debug/Blank.app/Contents/PlugIns/NewFileFinderExtension.appex"
-DERIVED_RELEASE_EXTENSION_PATH="$DERIVED_DATA_PATH/Build/Products/Release/Blank.app/Contents/PlugIns/NewFileFinderExtension.appex"
 INSTALLED_EXTENSION_PATH="$INSTALLED_APP_PATH/Contents/PlugIns/NewFileFinderExtension.appex"
+EXTENSION_BUNDLE_ID="com.xingshuhao.NewFile.FinderExtension"
+
+# 注销当前注册的所有同 bundle id 扩展。多份同时注册时 Finder 挑哪个不确定，
+# 归档产物在 DerivedData 里的路径还带哈希，只注销已知路径不够。
+unregister_all_extensions() {
+  /usr/bin/pluginkit -m -A -D -vvv -p com.apple.FinderSync 2>/dev/null \
+    | grep -A1 "$EXTENSION_BUNDLE_ID" \
+    | sed -n 's/.*Path = //p' \
+    | while IFS= read -r appex; do
+        /usr/bin/pluginkit -r "$appex" >/dev/null 2>&1 || true
+      done
+}
 
 cd "$PROJECT_ROOT"
 
@@ -31,12 +41,11 @@ xcodebuild \
   -allowProvisioningUpdates \
   build
 
-mkdir -p "$INSTALL_DIR"
+unregister_all_extensions
+rm -rf "${INSTALLED_APP_PATH:?}"
 /usr/bin/ditto "$APP_PATH" "$INSTALLED_APP_PATH"
-/usr/bin/pluginkit -r "$DERIVED_DEBUG_EXTENSION_PATH" >/dev/null 2>&1 || true
-/usr/bin/pluginkit -r "$DERIVED_RELEASE_EXTENSION_PATH" >/dev/null 2>&1 || true
 /usr/bin/pluginkit -a "$INSTALLED_EXTENSION_PATH"
-/usr/bin/pluginkit -e use -i com.xingshuhao.NewFile.FinderExtension
+/usr/bin/pluginkit -e use -i "$EXTENSION_BUNDLE_ID"
 
 case "${1:-}" in
   --verify)

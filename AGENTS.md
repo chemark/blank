@@ -53,13 +53,13 @@ Run tests:
 xcodebuild -project NewFile.xcodeproj -scheme NewFile -configuration Debug -derivedDataPath .derivedData -skipPackagePluginValidation CODE_SIGNING_ALLOWED=NO test
 ```
 
-Build, sign, install to `~/Applications/Blank.app`, register the Finder extension, launch, and verify the app:
+Build, sign, install to `/Applications/Blank.app`, register the Finder extension, launch, and verify the app:
 
 ```sh
 ./script/build_and_run.sh --verify
 ```
 
-Important: after running tests with `CODE_SIGNING_ALLOWED=NO`, run `./script/build_and_run.sh --verify` again before Finder-extension testing. Finder must use the signed Debug app/extension installed at `~/Applications/Blank.app`; `.derivedData` registration may appear in `pluginkit` but Finder may not load it.
+Important: after running tests with `CODE_SIGNING_ALLOWED=NO`, run `./script/build_and_run.sh --verify` again before Finder-extension testing. Finder must use the signed Debug app/extension installed at `/Applications/Blank.app`; `.derivedData` registration may appear in `pluginkit` but Finder may not load it.
 
 ## Signing And Provisioning
 
@@ -119,14 +119,17 @@ After a signed build, prefer the project script:
 ./script/build_and_run.sh --verify
 ```
 
-It installs the signed Debug app to `~/Applications/Blank.app`, removes Debug/Release `.derivedData` extension registrations if present, registers the installed extension, and launches the app.
+It unregisters every currently registered extension with the same bundle id, replaces
+`/Applications/Blank.app` with the signed Debug build, registers that one extension, and launches
+the app. Keep exactly one registration: when several are registered, Finder picks one
+non-deterministically and may run a stale build.
 
 Manual equivalent:
 
 ```sh
 pluginkit -r /Users/xingshuhao/blank/.derivedData/Build/Products/Debug/Blank.app/Contents/PlugIns/NewFileFinderExtension.appex
 pluginkit -r /Users/xingshuhao/blank/.derivedData/Build/Products/Release/Blank.app/Contents/PlugIns/NewFileFinderExtension.appex
-pluginkit -a /Users/xingshuhao/Applications/Blank.app/Contents/PlugIns/NewFileFinderExtension.appex
+pluginkit -a /Applications/Blank.app/Contents/PlugIns/NewFileFinderExtension.appex
 pluginkit -e use -i com.xingshuhao.NewFile.FinderExtension
 osascript -e 'tell application "Finder" to quit' -e 'delay 0.5' -e 'tell application "Finder" to activate'
 ```
@@ -141,7 +144,7 @@ Expected result includes:
 
 ```text
 com.xingshuhao.NewFile.FinderExtension(1.0)
-Path = /Users/xingshuhao/Applications/Blank.app/Contents/PlugIns/NewFileFinderExtension.appex
+Path = /Applications/Blank.app/Contents/PlugIns/NewFileFinderExtension.appex
 Display Name = Blank
 Parent Name = Blank
 ```
@@ -174,5 +177,5 @@ Ignore harmless oh-my-zsh cache-write warnings in restricted sandboxes; the impo
 ## Current Caveats
 
 - The repository is initialized, but many project files are still untracked. Do not assume a clean committed baseline.
-- Finder Sync behavior requires signed builds, installation to `~/Applications/Blank.app`, pluginkit registration, extension enablement, and Finder restart.
+- Finder Sync behavior requires signed builds, installation to `/Applications/Blank.app`, pluginkit registration, extension enablement, and Finder restart.
 - The host app UI no longer manages file-type toggles. `TemplatePreferences` and old fixed-template code may still exist in shared/tests for legacy coverage; do not revive that UX unless explicitly requested.

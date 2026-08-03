@@ -60,4 +60,16 @@ xcrun stapler staple "$DMG_PATH"
 xcrun stapler validate "$DMG_PATH"
 spctl -a -vvv -t install "$DMG_PATH"
 
+# xcodebuild archive 会把中间产物注册进 LaunchServices，路径在 DerivedData 里且带哈希。
+# 不清理的话每次发布都多污染一条，Finder 可能加载到随时会被删掉的那份。
+echo "==> 注销归档中间产物的扩展注册"
+/usr/bin/pluginkit -m -A -D -vvv -p com.apple.FinderSync 2>/dev/null \
+  | grep -A1 'com\.xingshuhao\.NewFile\.FinderExtension' \
+  | sed -n 's/.*Path = //p' \
+  | grep 'ArchiveIntermediates' \
+  | while IFS= read -r appex; do
+      /usr/bin/pluginkit -r "$appex" >/dev/null 2>&1 || true
+      echo "  removed: $appex"
+    done
+
 echo "Done: $DMG_PATH"
