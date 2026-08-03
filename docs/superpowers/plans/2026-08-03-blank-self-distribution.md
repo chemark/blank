@@ -993,5 +993,4 @@ Expected: JSON 内容正确返回，站点返回 `HTTP/2 200`。
   最可能的弱点是 `NewFile/App/ContentView.swift` 中的
   `x-apple.systempreferences` URL 在旧系统上打不开。
 - App Store Connect 中被拒的提交 `924cbb5f` 如何处理：取消提交，或保留不动。
-- 发版流程文档化：`MARKETING_VERSION`、`site/version.json`、
-  `gh release create` 的 tag 三处版本号必须同步，目前靠人记。
+- ~~发版流程文档化~~：已完成，见 `AGENTS.md` 的 `## Release Workflow`。

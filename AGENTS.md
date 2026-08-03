@@ -85,13 +85,43 @@ the sandbox and the absolute-path temporary exception.
 
 Keep `com.apple.security.app-sandbox` in `NewFile/NewFileFinderExtension.entitlements`. `pluginkit -a` silently refuses to register an unsandboxed Finder Sync extension, regardless of signing identity. Because the extension is sandboxed, it also needs `com.apple.security.temporary-exception.files.absolute-path.read-write` to write into the folder the user right-clicks. Apple rejected that entitlement for the Mac App Store under guideline 2.4.5(i); it is fine for Developer ID distribution.
 
-## Notarization
+## Release Workflow
+
+Three version numbers must always match. Missing the third one makes Check for Updates
+report "up to date" forever, with no error anywhere:
+
+1. `MARKETING_VERSION` in `Project.swift`
+2. `version` in `site/version.json`
+3. the git tag passed to `gh release create`
+
+Release order:
+
+```sh
+# 1. bump MARKETING_VERSION in Project.swift, then
+tuist generate --no-open --cache-profile none
+# 2. build, notarize, staple, package
+./script/release.sh
+# 3. publish the DMG
+gh release create <version> dist/Blank.dmg --title "Blank <version>"
+# 4. bump site/version.json, commit, and push — Cloudflare Pages deploys main automatically
+```
 
 `./script/release.sh` archives, exports, notarizes, staples, and packages a signed DMG.
-
 Notarization uses a keychain profile named `blank-notary`, created once with
 `xcrun notarytool store-credentials`. The App Store Connect API key id, issuer id, and `.p8`
 path are deliberately not recorded in this repository. Do not paste or commit `.p8` contents.
+
+## Site
+
+`site/` is deployed to Cloudflare Pages (project `blank`, domain `blank.hoshikihao.com`)
+from `main` on every push. Build command is empty; build output directory is `site`.
+
+`site/version.json` is the data source for the app's Check for Updates button. Its
+`version` and `download_url` keys must stay compatible with `UpdateInfo` in
+`NewFile/Shared/UpdateChecker.swift`.
+
+The page has no build step, no framework, and no external requests. Keep it that way:
+no CDN links, no web fonts, no analytics.
 
 ## Finder Extension Workflow
 
