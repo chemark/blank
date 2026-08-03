@@ -63,33 +63,26 @@ Important: after running tests with `CODE_SIGNING_ALLOWED=NO`, run `./script/bui
 
 ## Signing And Provisioning
 
-Both Development (Debug) and Distribution (Release) are configured for manual signing.
-
-### Development (Debug)
-
-- Signing identity: `3rd Party Mac Developer Application: hao hoshiki (6SKPUQN55Z)`, no provisioning profile.
-- The `Apple Development: hoshikihao@proton.me (ABD492V5HK)` private key is lost. The certificate still shows in the keychain but not in `security find-identity -v -p codesigning`. Do not configure Debug to use it.
-- Switch Debug to `Developer ID Application` once that certificate exists.
-- Registered Mac device UDID: `00008112-0004095C2E08201E`
-
-### Distribution (Release / Mac App Store)
-
-- Signing identity: `3rd Party Mac Developer Application: hao hoshiki (6SKPUQN55Z)`
-- Distribution certificate ASC id: `XR849UQQ74`
-- Host provisioning profile: `NewFile Mac App Store`
-- Host profile UUID: `89e4b80e-4bdc-4338-a54b-0dfce667d04d`
-- Extension provisioning profile: `NewFile Finder Extension Mac App Store`
-- Extension profile UUID: `6c5d713b-c8f5-4f96-a6e7-f508a182fc02`
-
-### Common
+Debug and Release both sign manually with `Developer ID Application: hao hoshiki (6SKPUQN55Z)`,
+no provisioning profile, hardened runtime enabled. One `signingSettings` dictionary in
+`Project.swift` covers both configurations and both targets.
 
 - Apple TeamIdentifier: `6SKPUQN55Z`
 - App bundle id: `com.xingshuhao.NewFile`
 - Finder extension bundle id: `com.xingshuhao.NewFile.FinderExtension`
 
+Do not configure any target to use `Apple Development: hoshikihao@proton.me (ABD492V5HK)`.
+Its private key is lost.
+
+Mac App Store distribution is abandoned. Do not restore the `3rd Party Mac Developer Application`
+identity or the Mac App Store provisioning profiles.
+
 Do not switch back to ad-hoc signing for Finder Sync testing. `pluginkit -a` silently refuses to register an ad-hoc signed extension; the signature must chain to Apple Root CA.
 
-Keep `com.apple.security.app-sandbox` in `NewFile/NewFileFinderExtension.entitlements`. `pluginkit -a` silently refuses to register an unsandboxed Finder Sync extension, regardless of signing identity. Because the extension is sandboxed, it also needs `com.apple.security.temporary-exception.files.absolute-path.read-write` to write into the folder the user right-clicks.
+Keep `ENABLE_HARDENED_RUNTIME` on. Notarization requires it, and it is verified to coexist with
+the sandbox and the absolute-path temporary exception.
+
+Keep `com.apple.security.app-sandbox` in `NewFile/NewFileFinderExtension.entitlements`. `pluginkit -a` silently refuses to register an unsandboxed Finder Sync extension, regardless of signing identity. Because the extension is sandboxed, it also needs `com.apple.security.temporary-exception.files.absolute-path.read-write` to write into the folder the user right-clicks. Apple rejected that entitlement for the Mac App Store under guideline 2.4.5(i); it is fine for Developer ID distribution.
 
 ## App Store Connect CLI
 

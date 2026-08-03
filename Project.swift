@@ -8,43 +8,22 @@ let sharedSettings: SettingsDictionary = [
     "SWIFT_VERSION": "6.0",
     "ENABLE_USER_SCRIPT_SANDBOXING": "YES",
     "DEVELOPMENT_TEAM": "6SKPUQN55Z",
-    "CODE_SIGN_STYLE": "Automatic",
-    "CODE_SIGN_IDENTITY": "Apple Development",
+    "CODE_SIGN_STYLE": "Manual",
+    "CODE_SIGN_IDENTITY": "Developer ID Application",
     "MARKETING_VERSION": "1.0",
     "CURRENT_PROJECT_VERSION": "1",
     "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
 ]
 
-// Debug 用分发证书签名：Apple Development 证书的私钥已丢失，本机没有其他可用身份。
-// 拿到 Developer ID Application 证书后应改用它。不带描述文件，沙盒临时例外仍然生效。
-let appSigningSettings: SettingsDictionary = [
+// Debug 与 Release 统一用 Developer ID Application 签名，不带描述文件。
+// hardened runtime 是公证的硬性要求，Debug 也开启，让日常验证等同发布环境。
+let signingSettings: SettingsDictionary = [
     "DEVELOPMENT_TEAM": "6SKPUQN55Z",
     "CODE_SIGN_STYLE": "Manual",
-    "CODE_SIGN_IDENTITY": "3rd Party Mac Developer Application",
+    "CODE_SIGN_IDENTITY": "Developer ID Application",
     "CODE_SIGN_INJECT_BASE_ENTITLEMENTS": "NO",
     "PROVISIONING_PROFILE_SPECIFIER": "",
-]
-
-let extensionSigningSettings: SettingsDictionary = [
-    "DEVELOPMENT_TEAM": "6SKPUQN55Z",
-    "CODE_SIGN_STYLE": "Manual",
-    "CODE_SIGN_IDENTITY": "3rd Party Mac Developer Application",
-    "CODE_SIGN_INJECT_BASE_ENTITLEMENTS": "NO",
-    "PROVISIONING_PROFILE_SPECIFIER": "",
-]
-
-let appDistributionSettings: SettingsDictionary = [
-    "DEVELOPMENT_TEAM": "6SKPUQN55Z",
-    "CODE_SIGN_STYLE": "Manual",
-    "CODE_SIGN_IDENTITY": "3rd Party Mac Developer Application",
-    "PROVISIONING_PROFILE_SPECIFIER": "NewFile Mac App Store",
-]
-
-let extensionDistributionSettings: SettingsDictionary = [
-    "DEVELOPMENT_TEAM": "6SKPUQN55Z",
-    "CODE_SIGN_STYLE": "Manual",
-    "CODE_SIGN_IDENTITY": "3rd Party Mac Developer Application",
-    "PROVISIONING_PROFILE_SPECIFIER": "NewFile Finder Extension Mac App Store",
+    "ENABLE_HARDENED_RUNTIME": "YES",
 ]
 
 let project = Project(
@@ -81,8 +60,8 @@ let project = Project(
             ],
             settings: .settings(
                 base: ["PRODUCT_NAME": "Blank", "INFOPLIST_KEY_LSMinimumSystemVersion": "13.0"],
-                debug: appSigningSettings,
-                release: appDistributionSettings
+                debug: signingSettings,
+                release: signingSettings
             )
         ),
         .target(
@@ -111,8 +90,8 @@ let project = Project(
             entitlements: "NewFile/NewFileFinderExtension.entitlements",
             settings: .settings(
                 base: ["PRODUCT_NAME": "NewFileFinderExtension", "INFOPLIST_KEY_LSMinimumSystemVersion": "13.0"],
-                debug: extensionSigningSettings,
-                release: extensionDistributionSettings
+                debug: signingSettings,
+                release: signingSettings
             )
         ),
         .target(
