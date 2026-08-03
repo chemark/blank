@@ -8,3 +8,5 @@ node_modules/
 .tuist-cache/
 *.xcarchive/
 NewFile-export/
+build/
+dist/

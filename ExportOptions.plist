@@ -3,21 +3,12 @@
 <plist version="1.0">
 <dict>
     <key>method</key>
-    <string>app-store</string>
+    <string>developer-id</string>
     <key>teamID</key>
     <string>6SKPUQN55Z</string>
     <key>signingStyle</key>
     <string>manual</string>
     <key>signingCertificate</key>
-    <string>3rd Party Mac Developer Application</string>
-    <key>installerSigningCertificate</key>
-    <string>3rd Party Mac Developer Installer</string>
-    <key>provisioningProfiles</key>
-    <dict>
-        <key>com.xingshuhao.NewFile</key>
-        <string>NewFile Mac App Store</string>
-        <key>com.xingshuhao.NewFile.FinderExtension</key>
-        <string>NewFile Finder Extension Mac App Store</string>
-    </dict>
+    <string>Developer ID Application</string>
 </dict>
 </plist>
