@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0641A5BDBF6085C0C51E031F /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B6CBC575C38E1A9C67112 /* UpdateChecker.swift */; };
 		072533EB58A0987B5352997E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E160F50E4DF04E1F5D8892 /* ContentView.swift */; };
 		0FA9C9961A232AD13A02914E /* AppIconSource.svg in Resources */ = {isa = PBXBuildFile; fileRef = E8354B95C82C9BC7E20E100B /* AppIconSource.svg */; };
 		15343E7C59DE69A1D0CF9F64 /* FileCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D08B34EA62791833DD93540 /* FileCreationService.swift */; };
 		291AFDBADFEC938ADF3BA98E /* TuistAssets+NewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2256947477AE13AEBF827E9 /* TuistAssets+NewFile.swift */; };
+		2C22A088C7AA563591CCF1B0 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B6CBC575C38E1A9C67112 /* UpdateChecker.swift */; };
 		304442B0ECDCAEAA48B7C91E /* FileCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D08B34EA62791833DD93540 /* FileCreationService.swift */; };
 		5A20C947DA25DF53A35904DC /* NewFileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B826B823D7510039A4D4354 /* NewFileApp.swift */; };
 		5A80AFBA736CD2F192851700 /* TuistStrings+NewFileFinderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199D2C5F691489E1835B660 /* TuistStrings+NewFileFinderExtension.swift */; };
+		695BFCE0B39A1B4C92113182 /* UpdateCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1CED253C74EDB77C3D6BD7 /* UpdateCheckerTests.swift */; };
+		6B192F4EF8BB9BC8613AC482 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B6CBC575C38E1A9C67112 /* UpdateChecker.swift */; };
 		6BA95238558D4887A1969284 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94032F787756E649C8522D10 /* Localizable.strings */; };
 		7B63B4C4BE8CE095ACFC830A /* TuistBundle+NewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F7F888633C2069A242FBF /* TuistBundle+NewFile.swift */; };
 		889F1BFDEF46ADEFEA47FB82 /* FileCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D08B34EA62791833DD93540 /* FileCreationService.swift */; };
@@ -88,6 +92,7 @@
 		2199D2C5F691489E1835B660 /* TuistStrings+NewFileFinderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistStrings+NewFileFinderExtension.swift"; sourceTree = "<group>"; };
 		25FE4D74168D279F2F2044EB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3604298230DEFBCC8C0527BF /* NewFileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NewFileTests-Info.plist"; sourceTree = "<group>"; };
+		3B7B6CBC575C38E1A9C67112 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 		3D08B34EA62791833DD93540 /* FileCreationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationService.swift; sourceTree = "<group>"; };
 		431A36BD8AA2E755E5E1A4BB /* Blank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DAFD2292060A5FD928DE93 /* NewFileFinderExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NewFileFinderExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +106,7 @@
 		825CC3FFDE8D607EAF50E885 /* NewFile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NewFile-Info.plist"; sourceTree = "<group>"; };
 		87B6D7133627468227C5E9FA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		9F32EBCBCA983217D1E98F8E /* NewFileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewFileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA1CED253C74EDB77C3D6BD7 /* UpdateCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCheckerTests.swift; sourceTree = "<group>"; };
 		E1B6978720E5FA3CFBEEF4F5 /* TuistBundle+NewFileFinderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+NewFileFinderExtension.swift"; sourceTree = "<group>"; };
 		E1E160F50E4DF04E1F5D8892 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2256947477AE13AEBF827E9 /* TuistAssets+NewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+NewFile.swift"; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 			children = (
 				E528DBD14C3956DC6C73382B /* EntitlementsTests.swift */,
 				46B31B73BB3FD06FC72A9067 /* FileCreationServiceTests.swift */,
+				AA1CED253C74EDB77C3D6BD7 /* UpdateCheckerTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -245,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				3D08B34EA62791833DD93540 /* FileCreationService.swift */,
+				3B7B6CBC575C38E1A9C67112 /* UpdateChecker.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -402,6 +410,7 @@
 				072533EB58A0987B5352997E /* ContentView.swift in Sources */,
 				5A20C947DA25DF53A35904DC /* NewFileApp.swift in Sources */,
 				889F1BFDEF46ADEFEA47FB82 /* FileCreationService.swift in Sources */,
+				2C22A088C7AA563591CCF1B0 /* UpdateChecker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,8 +419,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				304442B0ECDCAEAA48B7C91E /* FileCreationService.swift in Sources */,
+				6B192F4EF8BB9BC8613AC482 /* UpdateChecker.swift in Sources */,
 				D6BADE7DA32D707F1F78DE04 /* EntitlementsTests.swift in Sources */,
 				B5F733D4C87D577D4C684228 /* FileCreationServiceTests.swift in Sources */,
+				695BFCE0B39A1B4C92113182 /* UpdateCheckerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +434,7 @@
 				5A80AFBA736CD2F192851700 /* TuistStrings+NewFileFinderExtension.swift in Sources */,
 				E143281B15A4F82E1B1B082A /* FinderSync.swift in Sources */,
 				15343E7C59DE69A1D0CF9F64 /* FileCreationService.swift in Sources */,
+				0641A5BDBF6085C0C51E031F /* UpdateChecker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
