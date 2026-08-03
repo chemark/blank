@@ -39,4 +39,25 @@ xcrun stapler staple "$APP_PATH"
 xcrun stapler validate "$APP_PATH"
 spctl -a -vvv -t exec "$APP_PATH"
 
-echo "Done: $APP_PATH"
+echo "==> 打包 DMG"
+DMG_PATH="$EXPORT_DIR/Blank.dmg"
+STAGING_DIR="$PROJECT_ROOT/build/dmg-staging"
+rm -rf "$STAGING_DIR"
+mkdir -p "$STAGING_DIR"
+/usr/bin/ditto "$APP_PATH" "$STAGING_DIR/Blank.app"
+ln -s /Applications "$STAGING_DIR/Applications"
+
+/usr/bin/hdiutil create \
+  -volname Blank \
+  -srcfolder "$STAGING_DIR" \
+  -ov -format UDZO \
+  "$DMG_PATH"
+
+echo "==> 签名并公证 DMG"
+codesign --sign "Developer ID Application" --timestamp "$DMG_PATH"
+xcrun notarytool submit "$DMG_PATH" --keychain-profile "$NOTARY_PROFILE" --wait
+xcrun stapler staple "$DMG_PATH"
+xcrun stapler validate "$DMG_PATH"
+spctl -a -vvv -t install "$DMG_PATH"
+
+echo "Done: $DMG_PATH"
