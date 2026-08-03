@@ -5,8 +5,15 @@
 "setup.title" = "启用 Finder 扩展";
 "setup.body" = "打开「系统设置」，找到「扩展」，启用 Blank。启用后，右键点击文件夹即可选择「新建文件」。";
 "setup.open_settings" = "打开扩展设置";
-"setup.relaunch_finder" = "重新启动 Finder";
+"setup.troubleshoot" = "如果菜单项没有出现，重启一次 Finder：按住 Option 右键点击 Dock 里的 Finder 图标，选择「重新开启」。";
+
+/* 检查更新 */
+"update.check" = "检查更新";
+"update.checking" = "正在检查…";
+"update.up_to_date" = "Blank 已是最新版本。";
+"update.available" = "有新版本可用。";
+"update.failed" = "检查更新失败。";
 
 /* 隐私说明 */
 "privacy.title" = "隐私";
-"privacy.body" = "Blank 不联网、不做分析统计、不驻留后台进程、不索引文件、不扫描内容。它只在你操作的 Finder 文件夹里创建一个空的「未命名」文件。";
+"privacy.body" = "Blank 不做分析统计、不驻留后台进程、不索引文件、不扫描内容。它只在你操作的 Finder 文件夹里创建一个空的「未命名」文件。只有你主动点击「检查更新」时它才会联网。";

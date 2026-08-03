@@ -5,8 +5,15 @@
 "setup.title" = "Enable the Finder extension";
 "setup.body" = "Open System Settings, find Extensions, then enable Blank. After it is enabled, right-click a folder and choose New File.";
 "setup.open_settings" = "Open Extension Settings";
-"setup.relaunch_finder" = "Relaunch Finder";
+"setup.troubleshoot" = "If the menu item does not appear, restart Finder: hold Option and right-click the Finder icon in the Dock, then choose Relaunch.";
+
+/* 检查更新 */
+"update.check" = "Check for Updates";
+"update.checking" = "Checking…";
+"update.up_to_date" = "Blank is up to date.";
+"update.available" = "A new version is available.";
+"update.failed" = "Could not check for updates.";
 
 /* 隐私说明 */
 "privacy.title" = "Privacy";
-"privacy.body" = "Blank does not use network access, analytics, background daemons, file indexing, or content scanning. It only creates an empty Untitled file in the Finder folder you act on.";
+"privacy.body" = "Blank does not use analytics, background daemons, file indexing, or content scanning. It only creates an empty Untitled file in the Finder folder you act on. It goes online only when you click Check for Updates.";

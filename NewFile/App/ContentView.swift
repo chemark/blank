@@ -2,6 +2,9 @@ import SwiftUI
 import AppKit
 
 struct ContentView: View {
+    @State private var updateStatusKey: String?
+    @State private var isCheckingUpdate = false
+
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
             header
@@ -9,6 +12,7 @@ struct ContentView: View {
             enablementPanel
             privacyPanel
             Spacer(minLength: 0)
+            updateRow
         }
         .padding(28)
     }
@@ -29,14 +33,13 @@ struct ContentView: View {
             Text("setup.body")
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
-            HStack {
-                Button("setup.open_settings") {
-                    ExtensionSettingsOpener.open()
-                }
-                Button("setup.relaunch_finder") {
-                    FinderRelauncher.relaunch()
-                }
+            Button("setup.open_settings") {
+                ExtensionSettingsOpener.open()
             }
+            Text("setup.troubleshoot")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(16)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
@@ -52,6 +55,42 @@ struct ContentView: View {
         }
         .padding(.top, 4)
     }
+
+    private var updateRow: some View {
+        HStack(spacing: 10) {
+            Button("update.check") {
+                Task { await checkForUpdates() }
+            }
+            .disabled(isCheckingUpdate)
+            if let updateStatusKey {
+                Text(LocalizedStringKey(updateStatusKey))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    private static let versionManifestURL = URL(string: "https://blank.hoshikihao.com/version.json")!
+
+    private func checkForUpdates() async {
+        isCheckingUpdate = true
+        updateStatusKey = "update.checking"
+        defer { isCheckingUpdate = false }
+
+        let current = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+
+        do {
+            let info = try await UpdateChecker.fetchLatest(from: Self.versionManifestURL)
+            if UpdateChecker.isNewer(latest: info.version, than: current) {
+                updateStatusKey = "update.available"
+                NSWorkspace.shared.open(info.downloadURL)
+            } else {
+                updateStatusKey = "update.up_to_date"
+            }
+        } catch {
+            updateStatusKey = "update.failed"
+        }
+    }
 }
 
 enum ExtensionSettingsOpener {
@@ -64,12 +103,5 @@ enum ExtensionSettingsOpener {
         for url in urls where NSWorkspace.shared.open(url) {
             return
         }
-    }
-}
-
-enum FinderRelauncher {
-    static func relaunch() {
-        let script = "tell application \"Finder\" to quit\n delay 0.5\n tell application \"Finder\" to activate"
-        NSAppleScript(source: script)?.executeAndReturnError(nil)
     }
 }
