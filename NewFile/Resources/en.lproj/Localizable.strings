@@ -1,0 +1,12 @@
+/* 主窗口 */
+"app.subtitle" = "Create a new empty file from Finder's right-click menu, then rename it with any extension you need.";
+
+/* 启用引导 */
+"setup.title" = "Enable the Finder extension";
+"setup.body" = "Open System Settings, find Extensions, then enable Blank. After it is enabled, right-click a folder and choose New File.";
+"setup.open_settings" = "Open Extension Settings";
+"setup.relaunch_finder" = "Relaunch Finder";
+
+/* 隐私说明 */
+"privacy.title" = "Privacy";
+"privacy.body" = "Blank does not use network access, analytics, background daemons, file indexing, or content scanning. It only creates an empty Untitled file in the Finder folder you act on.";

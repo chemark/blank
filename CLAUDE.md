@@ -13,9 +13,13 @@ proves the existing setup is broken.
 
 ## Product Direction
 
-One Finder menu item named `New File`. Clicking it creates an empty no-extension file
-named `Untitled` in the target folder. Conflicts resolve as `Untitled 2`, `Untitled 3`,
-etc. The user renames the file to choose any extension.
+Product name is `Blank`; site is `blank.hoshikihao.com`. Internal target names, directories,
+and bundle ids keep the old `NewFile` spelling — do not rename them.
+
+One Finder menu item, localized (`New File` / `新建文件`). Clicking it creates an empty
+no-extension file in the target folder, named with the localized base name (`Untitled` /
+`未命名`). Conflicts resolve as `Untitled 2` / `未命名 2`, etc. The user renames the file
+to choose any extension.
 
 Do not restore the old five fixed file-type menu entries (`.txt`, `.md`, `.json`,
 `.csv`, `.html`).

@@ -15,18 +15,22 @@ let sharedSettings: SettingsDictionary = [
     "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
 ]
 
+// Debug 用分发证书签名：Apple Development 证书的私钥已丢失，本机没有其他可用身份。
+// 拿到 Developer ID Application 证书后应改用它。不带描述文件，沙盒临时例外仍然生效。
 let appSigningSettings: SettingsDictionary = [
     "DEVELOPMENT_TEAM": "6SKPUQN55Z",
     "CODE_SIGN_STYLE": "Manual",
-    "CODE_SIGN_IDENTITY": "Apple Development",
-    "PROVISIONING_PROFILE_SPECIFIER": "NewFile Mac Development",
+    "CODE_SIGN_IDENTITY": "3rd Party Mac Developer Application",
+    "CODE_SIGN_INJECT_BASE_ENTITLEMENTS": "NO",
+    "PROVISIONING_PROFILE_SPECIFIER": "",
 ]
 
 let extensionSigningSettings: SettingsDictionary = [
     "DEVELOPMENT_TEAM": "6SKPUQN55Z",
     "CODE_SIGN_STYLE": "Manual",
-    "CODE_SIGN_IDENTITY": "Apple Development",
-    "PROVISIONING_PROFILE_SPECIFIER": "NewFile Finder Extension Mac Development",
+    "CODE_SIGN_IDENTITY": "3rd Party Mac Developer Application",
+    "CODE_SIGN_INJECT_BASE_ENTITLEMENTS": "NO",
+    "PROVISIONING_PROFILE_SPECIFIER": "",
 ]
 
 let appDistributionSettings: SettingsDictionary = [
@@ -58,7 +62,7 @@ let project = Project(
             bundleId: appBundleId,
             deploymentTargets: .macOS("26.0"),
             infoPlist: .extendingDefault(with: [
-                "CFBundleDisplayName": "NewFile",
+                "CFBundleDisplayName": "Blank",
                 "CFBundleShortVersionString": "$(MARKETING_VERSION)",
                 "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
                 "LSApplicationCategoryType": "public.app-category.productivity",
@@ -76,7 +80,7 @@ let project = Project(
                 .target(name: "NewFileFinderExtension"),
             ],
             settings: .settings(
-                base: ["PRODUCT_NAME": "NewFile", "INFOPLIST_KEY_LSMinimumSystemVersion": "26.0"],
+                base: ["PRODUCT_NAME": "Blank", "INFOPLIST_KEY_LSMinimumSystemVersion": "26.0"],
                 debug: appSigningSettings,
                 release: appDistributionSettings
             )
@@ -88,7 +92,7 @@ let project = Project(
             bundleId: extensionBundleId,
             deploymentTargets: .macOS("26.0"),
             infoPlist: .extendingDefault(with: [
-                "CFBundleDisplayName": "NewFile Finder Extension",
+                "CFBundleDisplayName": "Blank",
                 "CFBundleShortVersionString": "$(MARKETING_VERSION)",
                 "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
                 "LSUIElement": true,

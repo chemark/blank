@@ -15,25 +15,25 @@ struct ContentView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("NewFile")
+            Text(verbatim: "Blank")
                 .font(.largeTitle.weight(.semibold))
-            Text("Create a new empty file from Finder's right-click menu, then rename it with any extension you need.")
+            Text("app.subtitle")
                 .foregroundStyle(.secondary)
         }
     }
 
     private var enablementPanel: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Label("Enable the Finder extension", systemImage: "puzzlepiece.extension")
+            Label("setup.title", systemImage: "puzzlepiece.extension")
                 .font(.headline)
-            Text("Open System Settings, find Extensions, then enable NewFile Finder Extension. After it is enabled, right-click a folder and choose New File.")
+            Text("setup.body")
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
             HStack {
-                Button("Open Extension Settings") {
+                Button("setup.open_settings") {
                     ExtensionSettingsOpener.open()
                 }
-                Button("Relaunch Finder") {
+                Button("setup.relaunch_finder") {
                     FinderRelauncher.relaunch()
                 }
             }
@@ -44,9 +44,9 @@ struct ContentView: View {
 
     private var privacyPanel: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label("Privacy", systemImage: "lock.shield")
+            Label("privacy.title", systemImage: "lock.shield")
                 .font(.headline)
-            Text("NewFile does not use network access, analytics, background daemons, file indexing, or content scanning. It only creates an empty Untitled file in the Finder folder you act on.")
+            Text("privacy.body")
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
         }

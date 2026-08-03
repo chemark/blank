@@ -16,7 +16,7 @@ final class FinderSync: FIFinderSync {
         let menu = NSMenu(title: "New File")
 
         let item = NSMenuItem(
-            title: "New File",
+            title: NSLocalizedString("menu.new_file", comment: "Finder 右键菜单项"),
             action: #selector(createUntitledFile(_:)),
             keyEquivalent: ""
         )
@@ -35,7 +35,10 @@ final class FinderSync: FIFinderSync {
 
         do {
             logger.info("Creating untitled file in \(directoryURL.path, privacy: .public)")
-            let createdURL = try fileCreationService.createUntitledFile(in: directoryURL)
+            let createdURL = try fileCreationService.createUntitledFile(
+                in: directoryURL,
+                baseName: NSLocalizedString("file.untitled_base", comment: "新建文件的默认文件名")
+            )
             NSWorkspace.shared.activateFileViewerSelecting([createdURL])
         } catch {
             logger.error("New File failed in \(directoryURL.path, privacy: .public): \(error.localizedDescription, privacy: .public)")

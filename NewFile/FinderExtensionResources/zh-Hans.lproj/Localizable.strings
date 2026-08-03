@@ -1,0 +1,5 @@
+/* Finder 右键菜单项 */
+"menu.new_file" = "新建文件";
+
+/* 新建文件的默认文件名，对齐 Finder 的「未命名文件夹」 */
+"file.untitled_base" = "未命名";

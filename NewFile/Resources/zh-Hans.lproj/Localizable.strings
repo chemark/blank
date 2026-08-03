@@ -1,0 +1,12 @@
+/* 主窗口 */
+"app.subtitle" = "在 Finder 右键菜单里新建空文件，再改成你需要的任意扩展名。";
+
+/* 启用引导 */
+"setup.title" = "启用 Finder 扩展";
+"setup.body" = "打开「系统设置」，找到「扩展」，启用 Blank。启用后，右键点击文件夹即可选择「新建文件」。";
+"setup.open_settings" = "打开扩展设置";
+"setup.relaunch_finder" = "重新启动 Finder";
+
+/* 隐私说明 */
+"privacy.title" = "隐私";
+"privacy.body" = "Blank 不联网、不做分析统计、不驻留后台进程、不索引文件、不扫描内容。它只在你操作的 Finder 文件夹里创建一个空的「未命名」文件。";

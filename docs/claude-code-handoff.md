@@ -4,7 +4,7 @@ Last updated: 2026-06-12 12:35 Asia/Shanghai
 
 ## Goal
 
-Continue developing `/Users/xingshuhao/newfile`, a macOS Finder Sync utility named NewFile.
+Continue developing `/Users/xingshuhao/blank`, a macOS Finder Sync utility named NewFile.
 
 The current product direction is not a fixed list of file extensions. The user wants behavior similar to Finder's "New Folder":
 
@@ -86,7 +86,7 @@ App Store note: this entitlement is a "temporary exception" that requires justif
 ## Project Layout
 
 ```text
-/Users/xingshuhao/newfile
+/Users/xingshuhao/blank
 ├── Project.swift
 ├── NewFile.xcodeproj
 ├── NewFile.xcworkspace
@@ -191,7 +191,7 @@ TeamIdentifier=6SKPUQN55Z
 After a signed build:
 
 ```sh
-pluginkit -a /Users/xingshuhao/newfile/.derivedData/Build/Products/Debug/NewFile.app/Contents/PlugIns/NewFileFinderExtension.appex
+pluginkit -a /Users/xingshuhao/blank/.derivedData/Build/Products/Debug/NewFile.app/Contents/PlugIns/NewFileFinderExtension.appex
 pluginkit -e use -i com.xingshuhao.NewFile.FinderExtension
 osascript -e 'tell application "Finder" to quit' -e 'delay 0.5' -e 'tell application "Finder" to activate'
 ```
@@ -206,7 +206,7 @@ Expected:
 
 ```text
 +    com.xingshuhao.NewFile.FinderExtension(1.0)
-Path = /Users/xingshuhao/newfile/.derivedData/Build/Products/Debug/NewFile.app/Contents/PlugIns/NewFileFinderExtension.appex
+Path = /Users/xingshuhao/blank/.derivedData/Build/Products/Debug/NewFile.app/Contents/PlugIns/NewFileFinderExtension.appex
 Display Name = NewFile Finder Extension
 Parent Name = NewFile
 ```

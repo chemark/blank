@@ -13,14 +13,18 @@
 		291AFDBADFEC938ADF3BA98E /* TuistAssets+NewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2256947477AE13AEBF827E9 /* TuistAssets+NewFile.swift */; };
 		304442B0ECDCAEAA48B7C91E /* FileCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D08B34EA62791833DD93540 /* FileCreationService.swift */; };
 		5A20C947DA25DF53A35904DC /* NewFileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B826B823D7510039A4D4354 /* NewFileApp.swift */; };
+		5A80AFBA736CD2F192851700 /* TuistStrings+NewFileFinderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199D2C5F691489E1835B660 /* TuistStrings+NewFileFinderExtension.swift */; };
+		6BA95238558D4887A1969284 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94032F787756E649C8522D10 /* Localizable.strings */; };
 		7B63B4C4BE8CE095ACFC830A /* TuistBundle+NewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5F7F888633C2069A242FBF /* TuistBundle+NewFile.swift */; };
 		889F1BFDEF46ADEFEA47FB82 /* FileCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D08B34EA62791833DD93540 /* FileCreationService.swift */; };
+		94D1609AF22A7929465EFE6D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDF26030D5C68104AF2AA3B8 /* Localizable.strings */; };
 		979606F27994D14241109D97 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 87B6D7133627468227C5E9FA /* PrivacyInfo.xcprivacy */; };
 		A0059B4CDBFA1094F4FB88C3 /* TuistBundle+NewFileFinderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B6978720E5FA3CFBEEF4F5 /* TuistBundle+NewFileFinderExtension.swift */; };
 		B5F733D4C87D577D4C684228 /* FileCreationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B31B73BB3FD06FC72A9067 /* FileCreationServiceTests.swift */; };
 		BBE8BDB703C507F5DE06D691 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 579F3FB1EFD25F9AD7C9412E /* PrivacyInfo.xcprivacy */; };
 		CDFC735A1AC78E0F86DA8F42 /* NewFileFinderExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 45DAFD2292060A5FD928DE93 /* NewFileFinderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D393EF2DAF9CE6BCE627A720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B54127BCB974D35540E466 /* Assets.xcassets */; };
+		D7C23D64DFF9D2327D4E17AD /* TuistStrings+NewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81993EA499AE0BA20CCAE83F /* TuistStrings+NewFile.swift */; };
 		E143281B15A4F82E1B1B082A /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A4E21F69B57D9286BE539 /* FinderSync.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,24 +83,30 @@
 
 /* Begin PBXFileReference section */
 		14B54127BCB974D35540E466 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A60010804A1758EA8B6535D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2199D2C5F691489E1835B660 /* TuistStrings+NewFileFinderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistStrings+NewFileFinderExtension.swift"; sourceTree = "<group>"; };
+		25FE4D74168D279F2F2044EB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3604298230DEFBCC8C0527BF /* NewFileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NewFileTests-Info.plist"; sourceTree = "<group>"; };
 		3D08B34EA62791833DD93540 /* FileCreationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationService.swift; sourceTree = "<group>"; };
+		431A36BD8AA2E755E5E1A4BB /* Blank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DAFD2292060A5FD928DE93 /* NewFileFinderExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NewFileFinderExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		46B31B73BB3FD06FC72A9067 /* FileCreationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationServiceTests.swift; sourceTree = "<group>"; };
 		4B826B823D7510039A4D4354 /* NewFileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFileApp.swift; sourceTree = "<group>"; };
 		4C3A4E21F69B57D9286BE539 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		573882985654C9F785F8A023 /* NewFile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NewFile.entitlements; sourceTree = "<group>"; };
 		579F3FB1EFD25F9AD7C9412E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		62B20F8D39F152474D61E976 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		81993EA499AE0BA20CCAE83F /* TuistStrings+NewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistStrings+NewFile.swift"; sourceTree = "<group>"; };
 		825CC3FFDE8D607EAF50E885 /* NewFile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NewFile-Info.plist"; sourceTree = "<group>"; };
 		87B6D7133627468227C5E9FA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		9F32EBCBCA983217D1E98F8E /* NewFileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewFileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADE02348385B1E629AAB3AF1 /* NewFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B6978720E5FA3CFBEEF4F5 /* TuistBundle+NewFileFinderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+NewFileFinderExtension.swift"; sourceTree = "<group>"; };
 		E1E160F50E4DF04E1F5D8892 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2256947477AE13AEBF827E9 /* TuistAssets+NewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+NewFile.swift"; sourceTree = "<group>"; };
 		E2262275013D999B531F5E7D /* NewFileFinderExtension-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NewFileFinderExtension-Info.plist"; sourceTree = "<group>"; };
 		E8354B95C82C9BC7E20E100B /* AppIconSource.svg */ = {isa = PBXFileReference; path = AppIconSource.svg; sourceTree = "<group>"; };
 		E86FAE07A9D12BA99F79D995 /* NewFileFinderExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NewFileFinderExtension.entitlements; sourceTree = "<group>"; };
+		F9D088EC9C72E060B0E30E4D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FC5F7F888633C2069A242FBF /* TuistBundle+NewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+NewFile.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,7 +157,7 @@
 		2E9AB35918004816661C9256 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ADE02348385B1E629AAB3AF1 /* NewFile.app */,
+				431A36BD8AA2E755E5E1A4BB /* Blank.app */,
 				45DAFD2292060A5FD928DE93 /* NewFileFinderExtension.appex */,
 				9F32EBCBCA983217D1E98F8E /* NewFileTests.xctest */,
 			);
@@ -168,6 +178,8 @@
 				E2256947477AE13AEBF827E9 /* TuistAssets+NewFile.swift */,
 				FC5F7F888633C2069A242FBF /* TuistBundle+NewFile.swift */,
 				E1B6978720E5FA3CFBEEF4F5 /* TuistBundle+NewFileFinderExtension.swift */,
+				81993EA499AE0BA20CCAE83F /* TuistStrings+NewFile.swift */,
+				2199D2C5F691489E1835B660 /* TuistStrings+NewFileFinderExtension.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -175,6 +187,7 @@
 		5A446E2526572595ED216D6B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CDF26030D5C68104AF2AA3B8 /* Localizable.strings */,
 				E8354B95C82C9BC7E20E100B /* AppIconSource.svg */,
 				14B54127BCB974D35540E466 /* Assets.xcassets */,
 				87B6D7133627468227C5E9FA /* PrivacyInfo.xcprivacy */,
@@ -202,6 +215,7 @@
 		966015E7595FD4974F290916 /* FinderExtensionResources */ = {
 			isa = PBXGroup;
 			children = (
+				94032F787756E649C8522D10 /* Localizable.strings */,
 				579F3FB1EFD25F9AD7C9412E /* PrivacyInfo.xcprivacy */,
 			);
 			path = FinderExtensionResources;
@@ -309,7 +323,7 @@
 			packageProductDependencies = (
 			);
 			productName = NewFile;
-			productReference = ADE02348385B1E629AAB3AF1 /* NewFile.app */;
+			productReference = 431A36BD8AA2E755E5E1A4BB /* Blank.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -330,6 +344,7 @@
 			knownRegions = (
 				Base,
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 332B7673C12D2D244895D054;
 			productRefGroup = 2E9AB35918004816661C9256 /* Products */;
@@ -358,6 +373,7 @@
 				0FA9C9961A232AD13A02914E /* AppIconSource.svg in Resources */,
 				D393EF2DAF9CE6BCE627A720 /* Assets.xcassets in Resources */,
 				979606F27994D14241109D97 /* PrivacyInfo.xcprivacy in Resources */,
+				94D1609AF22A7929465EFE6D /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBE8BDB703C507F5DE06D691 /* PrivacyInfo.xcprivacy in Resources */,
+				6BA95238558D4887A1969284 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +395,7 @@
 			files = (
 				291AFDBADFEC938ADF3BA98E /* TuistAssets+NewFile.swift in Sources */,
 				7B63B4C4BE8CE095ACFC830A /* TuistBundle+NewFile.swift in Sources */,
+				D7C23D64DFF9D2327D4E17AD /* TuistStrings+NewFile.swift in Sources */,
 				072533EB58A0987B5352997E /* ContentView.swift in Sources */,
 				5A20C947DA25DF53A35904DC /* NewFileApp.swift in Sources */,
 				889F1BFDEF46ADEFEA47FB82 /* FileCreationService.swift in Sources */,
@@ -398,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0059B4CDBFA1094F4FB88C3 /* TuistBundle+NewFileFinderExtension.swift in Sources */,
+				5A80AFBA736CD2F192851700 /* TuistStrings+NewFileFinderExtension.swift in Sources */,
 				E143281B15A4F82E1B1B082A /* FinderSync.swift in Sources */,
 				15343E7C59DE69A1D0CF9F64 /* FileCreationService.swift in Sources */,
 			);
@@ -413,6 +432,27 @@
 			targetProxy = 79BC87D1688170FCE70F8CB4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		94032F787756E649C8522D10 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62B20F8D39F152474D61E976 /* en */,
+				F9D088EC9C72E060B0E30E4D /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		CDF26030D5C68104AF2AA3B8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A60010804A1758EA8B6535D /* en */,
+				25FE4D74168D279F2F2044EB /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2A0103A8910714FDD98612F1 /* Debug */ = {
@@ -489,7 +529,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NewFile/NewFile.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6SKPUQN55Z;
@@ -501,9 +542,13 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xingshuhao.NewFile;
-				PRODUCT_NAME = NewFile;
-				PROVISIONING_PROFILE_SPECIFIER = "NewFile Mac Development";
+				PRODUCT_NAME = Blank;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
 					"$(inherited)",
@@ -525,6 +570,10 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xingshuhao.NewFile.tests;
 				PRODUCT_NAME = NewFileTests;
 				SDKROOT = macosx;
@@ -599,7 +648,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NewFile/NewFileFinderExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6SKPUQN55Z;
 				INFOPLIST_FILE = "Derived/InfoPlists/NewFileFinderExtension-Info.plist";
@@ -610,9 +660,13 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xingshuhao.NewFile.FinderExtension;
 				PRODUCT_NAME = NewFileFinderExtension;
-				PROVISIONING_PROFILE_SPECIFIER = "NewFile Finder Extension Mac Development";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
 					"$(inherited)",
@@ -634,6 +688,10 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xingshuhao.NewFile.tests;
 				PRODUCT_NAME = NewFileTests;
 				SDKROOT = macosx;
@@ -664,8 +722,12 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xingshuhao.NewFile;
-				PRODUCT_NAME = NewFile;
+				PRODUCT_NAME = Blank;
 				PROVISIONING_PROFILE_SPECIFIER = "NewFile Mac App Store";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -688,6 +750,10 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xingshuhao.NewFile.FinderExtension;
 				PRODUCT_NAME = NewFileFinderExtension;
 				PROVISIONING_PROFILE_SPECIFIER = "NewFile Finder Extension Mac App Store";

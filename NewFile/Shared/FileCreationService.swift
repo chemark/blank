@@ -21,8 +21,8 @@ struct FileCreationService {
         self.fileManager = fileManager
     }
 
-    func availableUntitledFileURL(in directoryURL: URL) throws -> URL {
-        try availableURL(baseName: "Untitled", fileExtension: nil, in: directoryURL)
+    func availableUntitledFileURL(in directoryURL: URL, baseName: String = "Untitled") throws -> URL {
+        try availableURL(baseName: baseName, fileExtension: nil, in: directoryURL)
     }
 
     private func availableURL(baseName: String, fileExtension: String?, in directoryURL: URL) throws -> URL {
@@ -48,8 +48,8 @@ struct FileCreationService {
     }
 
     @discardableResult
-    func createUntitledFile(in directoryURL: URL) throws -> URL {
-        let targetURL = try availableUntitledFileURL(in: directoryURL)
+    func createUntitledFile(in directoryURL: URL, baseName: String = "Untitled") throws -> URL {
+        let targetURL = try availableUntitledFileURL(in: directoryURL, baseName: baseName)
         let data = Data()
         try data.write(to: targetURL, options: [.withoutOverwriting])
         return targetURL
