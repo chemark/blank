@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blank — a new file, from Finder's right-click menu</title>
+<meta name="description" content="A macOS Finder extension that adds one menu item: create an empty file. Free, open source, notarized.">
+<link rel="icon" href="icon.png">
+<meta property="og:title" content="Blank">
+<meta property="og:description" content="A macOS Finder extension that adds one menu item: create an empty file.">
+<meta property="og:image" content="icon-1024.png">
+<meta name="theme-color" content="#0c0e10">
+<style>
+:root {
+  --paper:   #faf8f4;
+  --ink:     #16191c;
+  --muted:   #74706a;
+  --rule:    #e2ddd4;
+  --panel:   #ffffff;
+  --accent:  #0b7268;
+  --accent-soft: #0b726812;
+  --grid:    #16191c08;
+
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --serif: "New York", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:  #0c0e10;
+    --ink:    #e9e6e0;
+    --muted:  #8b8781;
+    --rule:   #24282c;
+    --panel:  #14171a;
+    --accent: #46cfbe;
+    --accent-soft: #46cfbe14;
+    --grid:   #e9e6e007;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--paper);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--mono);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  /* 方格纸底纹：呼应「空白文件」的主题，极淡，几乎只在余光里存在 */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 28px 120px;
+}
+
+/* ---------- 语言切换 ---------- */
+
+html[lang="en"] [data-lang="zh"],
+html[lang="zh"] [data-lang="en"] { display: none; }
+
+.langbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+  padding: 20px 0 0;
+  font-size: 12px;
+}
+
+.langbar button {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--muted);
+  padding: 4px 9px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color .18s, background .18s;
+}
+.langbar button:hover { color: var(--ink); }
+.langbar button[aria-pressed="true"] {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ---------- 入场动画 ---------- */
+
+.rise {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards;
+}
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+.d1 { animation-delay: .05s } .d2 { animation-delay: .14s }
+.d3 { animation-delay: .23s } .d4 { animation-delay: .32s }
+.d5 { animation-delay: .42s } .d6 { animation-delay: .52s }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; opacity: 1; transform: none; }
+  .caret, .cycle > span { animation: none !important; }
+  .cycle > span:first-child { opacity: 1 !important; }
+}
+
+/* ---------- Hero ---------- */
+
+header { padding: 56px 0 0; }
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.mark img { width: 34px; height: 34px; border-radius: 8px; display: block; }
+.mark span {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1 {
+  font-size: clamp(58px, 15vw, 116px);
+  line-height: .92;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+}
+
+/* 永远闪烁、永远不写入任何东西的光标——产品本身就是这个意思 */
+.caret {
+  display: inline-block;
+  width: .075em;
+  height: .82em;
+  background: var(--accent);
+  margin-left: .12em;
+  transform: translateY(.02em);
+  animation: blink 1.15s steps(1) infinite;
+}
+@keyframes blink { 0%, 50% { opacity: 1 } 50.01%, 100% { opacity: 0 } }
+
+.lede {
+  font-family: var(--serif);
+  font-size: clamp(19px, 3.4vw, 24px);
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin: 30px 0 0;
+  max-width: 30em;
+}
+.lede em { font-style: italic; color: var(--accent); }
+
+.sub {
+  color: var(--muted);
+  margin: 18px 0 0;
+  max-width: 34em;
+  font-size: 14px;
+}
+
+/* ---------- 演示 ---------- */
+
+.demo {
+  margin: 68px 0 0;
+  display: grid;
+  grid-template-columns: minmax(0, 202px) minmax(0, 1fr);
+  gap: 30px;
+  align-items: center;
+}
+@media (max-width: 560px) {
+  .demo { grid-template-columns: 1fr; gap: 26px; }
+}
+
+.menu {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 9px;
+  padding: 5px;
+  box-shadow: 0 12px 34px -14px rgba(0,0,0,.32), 0 1px 2px rgba(0,0,0,.05);
+  font-size: 12.5px;
+  user-select: none;
+}
+.menu i {
+  display: block;
+  padding: 4px 10px;
+  color: var(--muted);
+  font-style: normal;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.menu hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 5px 8px;
+}
+.menu .hit {
+  background: var(--accent);
+  color: #fff;
+}
+@media (prefers-color-scheme: dark) { .menu .hit { color: #06110f; } }
+
+.result { min-width: 0; }
+.result .file {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.result .glyph {
+  flex: none;
+  width: 34px; height: 42px;
+  border: 1.5px dashed var(--rule);
+  border-radius: 4px;
+  position: relative;
+}
+.result .glyph::after {
+  content: "";
+  position: absolute;
+  inset: auto 8px 9px 8px;
+  height: 1.5px;
+  background: var(--rule);
+}
+.result .name {
+  font-size: clamp(16px, 4.4vw, 21px);
+  letter-spacing: -0.02em;
+  position: relative;
+  min-width: 0;
+}
+
+/* 文件名循环：正是产品的用法——建一个空文件，然后改成任何东西 */
+.cycle { display: grid; }
+.cycle > span {
+  grid-area: 1 / 1;
+  opacity: 0;
+  animation: cycle 11s infinite;
+  white-space: nowrap;
+}
+.cycle > span:nth-child(1) { animation-delay: 0s }
+.cycle > span:nth-child(2) { animation-delay: 2.2s }
+.cycle > span:nth-child(3) { animation-delay: 4.4s }
+.cycle > span:nth-child(4) { animation-delay: 6.6s }
+.cycle > span:nth-child(5) { animation-delay: 8.8s }
+.cycle .zero { color: var(--muted); }
+.cycle .zero b { font-weight: inherit; }
+@keyframes cycle {
+  0%      { opacity: 0; transform: translateY(4px) }
+  2%, 18% { opacity: 1; transform: none }
+  20%,100%{ opacity: 0; transform: translateY(-4px) }
+}
+
+.result .meta {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin: 10px 0 0;
+}
+
+/* ---------- 下载 ---------- */
+
+.get { margin: 76px 0 0; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  padding: 15px 26px;
+  border-radius: 8px;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  transition: transform .16s cubic-bezier(.2,.7,.3,1), box-shadow .16s;
+  box-shadow: 0 2px 0 var(--accent);
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 0 var(--accent); }
+.btn:active { transform: translateY(0); box-shadow: 0 1px 0 var(--accent); }
+.btn .arw { color: var(--accent); }
+
+.reqs {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin: 15px 0 0;
+}
+.reqs b { color: var(--ink); font-weight: 500; }
+
+/* ---------- 分节 ---------- */
+
+section { margin: 82px 0 0; }
+
+h2 {
+  font-size: 12px;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  margin: 0 0 22px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* 启用步骤——装完不启用就等于没装，这里是整个页面转化率最要命的一段 */
+.steps { counter-reset: s; margin: 0; padding: 0; list-style: none; }
+.steps li {
+  counter-increment: s;
+  position: relative;
+  padding: 0 0 0 42px;
+  margin: 0 0 20px;
+}
+.steps li::before {
+  content: counter(s);
+  position: absolute;
+  left: 0; top: 1px;
+  width: 25px; height: 25px;
+  display: grid; place-items: center;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+  font-size: 12px;
+}
+.steps code {
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.note {
+  border-left: 2px solid var(--rule);
+  padding: 2px 0 2px 16px;
+  color: var(--muted);
+  font-size: 13.5px;
+  margin: 26px 0 0;
+}
+
+p { margin: 0 0 15px; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+.prose { max-width: 38em; }
+.prose code {
+  font-size: 12.5px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 2px 5px;
+  border-radius: 4px;
+  word-break: break-all;
+}
+
+footer {
+  margin: 96px 0 0;
+  padding: 26px 0 0;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="langbar">
+    <button type="button" data-set="en" aria-pressed="true">EN</button>
+    <button type="button" data-set="zh" aria-pressed="false">中文</button>
+  </div>
+
+  <header>
+    <div class="mark rise d1">
+      <img src="icon.png" alt="" width="34" height="34">
+      <span>for macOS</span>
+    </div>
+
+    <h1 class="rise d1">Blank<i class="caret" aria-hidden="true"></i></h1>
+
+    <p class="lede rise d2" data-lang="en">
+      Finder can make a new folder. It cannot make a new <em>file</em>.
+    </p>
+    <p class="lede rise d2" data-lang="zh">
+      Finder 能新建文件夹，却不能新建<em>文件</em>。
+    </p>
+
+    <p class="sub rise d3" data-lang="en">
+      Blank adds one menu item and nothing else. Right-click, get an empty file,
+      rename it to whatever you need.
+    </p>
+    <p class="sub rise d3" data-lang="zh">
+      Blank 只加一个菜单项，此外什么都不做。右键，得到一个空文件，改成你需要的任何名字。
+    </p>
+  </header>
+
+  <div class="demo rise d4">
+    <div class="menu" aria-hidden="true">
+      <i>New Folder</i>
+      <i>Get Info</i>
+      <hr>
+      <i>Sort By</i>
+      <i>Show View Options</i>
+      <hr>
+      <i class="hit" data-lang="en">New File</i>
+      <i class="hit" data-lang="zh">新建文件</i>
+    </div>
+
+    <div class="result">
+      <div class="file">
+        <div class="glyph" aria-hidden="true"></div>
+        <div class="name">
+          <span class="cycle">
+            <span class="zero"><b data-lang="en">Untitled</b><b data-lang="zh">未命名</b></span>
+            <span>note.md</span>
+            <span>data.json</span>
+            <span>query.sql</span>
+            <span>.gitignore</span>
+          </span>
+        </div>
+      </div>
+      <p class="meta" data-lang="en">0 bytes. No extension. Yours to name.</p>
+      <p class="meta" data-lang="zh">0 字节，没有扩展名，随你命名。</p>
+    </div>
+  </div>
+
+  <div class="get rise d5">
+    <a class="btn" href="https://github.com/chemark/blank/releases/latest">
+      <span data-lang="en">Download Blank</span>
+      <span data-lang="zh">下载 Blank</span>
+      <span class="arw" aria-hidden="true">↓</span>
+    </a>
+    <p class="reqs" data-lang="en">
+      Version <b>1.0</b> · macOS 13 or later · Apple silicon &amp; Intel ·
+      Signed and notarized · <b>Free</b>
+    </p>
+    <p class="reqs" data-lang="zh">
+      版本 <b>1.0</b> · 需要 macOS 13 或更高 · Apple 芯片与 Intel ·
+      已签名并经 Apple 公证 · <b>免费</b>
+    </p>
+  </div>
+
+  <section class="rise d6">
+    <h2 data-lang="en">Turn it on first</h2>
+    <h2 data-lang="zh">先启用扩展</h2>
+
+    <ol class="steps" data-lang="en">
+      <li>Drag <b>Blank</b> into your Applications folder and open it once.</li>
+      <li>Go to <code>System Settings</code> → <code>General</code> →
+          <code>Login Items &amp; Extensions</code> → <code>Finder Extensions</code>.</li>
+      <li>Turn on <b>Blank</b>. Now right-click any folder.</li>
+    </ol>
+    <ol class="steps" data-lang="zh">
+      <li>把 <b>Blank</b> 拖进「应用程序」文件夹，打开一次。</li>
+      <li>进入<code>系统设置</code> → <code>通用</code> →
+          <code>登录项与扩展</code> → <code>访达扩展</code>。</li>
+      <li>打开 <b>Blank</b> 的开关。现在右键点击任意文件夹。</li>
+    </ol>
+
+    <p class="note" data-lang="en">
+      A Finder extension does nothing until macOS is told to load it — this step is not optional.
+      If the menu item still does not appear, hold <b>Option</b>, right-click the Finder icon
+      in the Dock, and choose <b>Relaunch</b>.
+    </p>
+    <p class="note" data-lang="zh">
+      Finder 扩展在系统启用之前完全不工作，这一步不能跳过。如果菜单项仍然没出现，
+      按住 <b>Option</b> 右键点击 Dock 里的访达图标，选择<b>重新开启</b>。
+    </p>
+  </section>
+
+  <section>
+    <h2 data-lang="en">What it doesn't do</h2>
+    <h2 data-lang="zh">它不做什么</h2>
+
+    <div class="prose" data-lang="en">
+      <p>
+        No analytics. No background daemon. No file indexing. No content scanning.
+        Blank creates one empty file in the folder you right-clicked, and that is all it
+        ever does on your machine.
+      </p>
+      <p>
+        It goes online only when you click <b>Check for Updates</b>, which fetches a single
+        static file and nothing else.
+      </p>
+    </div>
+    <div class="prose" data-lang="zh">
+      <p>
+        不做分析统计，不驻留后台进程，不索引文件，不扫描内容。
+        Blank 只在你右键点击的文件夹里创建一个空文件，在你的机器上它只做这一件事。
+      </p>
+      <p>
+        只有你主动点击<b>检查更新</b>时它才联网，而且只会取一个静态文件。
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-lang="en">About that broad permission</h2>
+    <h2 data-lang="zh">关于那条宽泛的权限</h2>
+
+    <div class="prose" data-lang="en">
+      <p>
+        Blank's extension ships with
+        <code>com.apple.security.temporary-exception.files.absolute-path.read-write</code>.
+        That is a lot of permission for an app this small, so it deserves an answer rather
+        than silence.
+      </p>
+      <p>
+        A Finder Sync extension must be sandboxed, and inside the sandbox it can only write
+        where the sandbox allows. The folder it needs to write to is the one you just
+        right-clicked — known only at runtime. No open panel is involved, so the usual
+        user-selected entitlement does not apply. Without the exception, the app cannot do
+        the one thing it exists to do.
+      </p>
+      <p>
+        Apple rejected exactly this under App Store guideline 2.4.5(i), which is why Blank
+        is distributed from here instead of the Mac App Store. The code that uses the
+        permission is about sixty lines — it is
+        <a href="https://github.com/chemark/blank">public, and worth reading</a>.
+      </p>
+    </div>
+    <div class="prose" data-lang="zh">
+      <p>
+        Blank 的扩展带有
+        <code>com.apple.security.temporary-exception.files.absolute-path.read-write</code>
+        这条权限。对一个这么小的应用来说它确实过大，所以应该给出解释，而不是沉默。
+      </p>
+      <p>
+        Finder Sync 扩展必须运行在沙盒里，而沙盒中它只能写入被允许的位置。
+        它需要写入的是你刚刚右键点击的那个文件夹——只有运行时才知道是哪个。
+        这个过程没有任何打开面板，所以常规的 user-selected 权限用不上。
+        没有这条例外，它就无法完成自己唯一存在的意义。
+      </p>
+      <p>
+        Apple 正是以 App Store 审核条款 2.4.5(i) 拒绝了这条权限，这也是 Blank
+        从这里分发而不上 Mac App Store 的原因。真正用到这条权限的代码大约六十行，
+        <a href="https://github.com/chemark/blank">它是公开的，值得你读一遍</a>。
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://github.com/chemark/blank">GitHub</a>
+    <a href="https://github.com/chemark/blank/releases">Releases</a>
+    <span>MIT</span>
+    <span>© 2026 Xing Shuhao</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('.langbar button');
+
+  function apply(lang) {
+    root.lang = lang;
+    buttons.forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.set === lang));
+    });
+    try { localStorage.setItem('blank-lang', lang); } catch (e) {}
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('blank-lang'); } catch (e) {}
+
+  var initial;
+  if (saved === 'en' || saved === 'zh') {
+    initial = saved;
+  } else {
+    initial = (navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+  }
+  apply(initial);
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { apply(b.dataset.set); });
+  });
+})();
+</script>
+</body>
+</html>
