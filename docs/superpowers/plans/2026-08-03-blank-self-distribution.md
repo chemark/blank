@@ -175,7 +175,7 @@ security-scoped bookmark 方案——那会同时改变 App Store 的可行性�
 Debug 和 Release 都用 `Developer ID Application: hao hoshiki (6SKPUQN55Z)` 手动签名，
 不带描述文件，并开启 hardened runtime。
 
-- The `Apple Development: hoshikihao@proton.me (ABD492V5HK)` private key is lost. Do not configure any target to use it.
+- The old `Apple Development` certificate's private key is lost. Do not configure any target to use it.
 - Mac App Store distribution is abandoned. Do not restore the `3rd Party Mac Developer Application` identity or the Mac App Store provisioning profiles.
 - Apple TeamIdentifier: `6SKPUQN55Z`
 - App bundle id: `com.xingshuhao.NewFile`
@@ -506,9 +506,9 @@ Run（`--key` 路径来自 `AGENTS.md` 记录的本地 `.p8` 位置）:
 
 ```bash
 xcrun notarytool store-credentials blank-notary \
-  --key /Users/xingshuhao/Downloads/AuthKey_H96X8J37ZU.p8 \
-  --key-id H96X8J37ZU \
-  --issuer bc57f3ee-053c-4a19-a1d4-f2ff402adf19
+  --key <path-to-your-AuthKey.p8> \
+  --key-id <your-key-id> \
+  --issuer <your-issuer-id>
 ```
 
 Expected: `Validating your credentials... Success.`

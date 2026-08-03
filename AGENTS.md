@@ -35,9 +35,10 @@ injection into Finder.
 - Shared app/extension logic: `NewFile/Shared/`
 - Tests: `NewFile/Tests/`
 - Build/run entrypoint: `script/build_and_run.sh`
+- Release entrypoint: `script/release.sh`
+- Landing page: `site/`
 - Codex run button config: `.codex/environments/environment.toml`
-- App Store notes: `docs/app-store/`
-- Detailed handoff: `docs/claude-code-handoff.md`
+- Design docs and implementation plans: `docs/superpowers/`
 
 ## Development Commands
 
@@ -71,8 +72,8 @@ no provisioning profile, hardened runtime enabled. One `signingSettings` diction
 - App bundle id: `com.xingshuhao.NewFile`
 - Finder extension bundle id: `com.xingshuhao.NewFile.FinderExtension`
 
-Do not configure any target to use `Apple Development: hoshikihao@proton.me (ABD492V5HK)`.
-Its private key is lost.
+Do not configure any target to use the old `Apple Development` certificate. Its private key is
+lost and it no longer appears in `security find-identity -v -p codesigning`.
 
 Mac App Store distribution is abandoned. Do not restore the `3rd Party Mac Developer Application`
 identity or the Mac App Store provisioning profiles.
@@ -84,32 +85,13 @@ the sandbox and the absolute-path temporary exception.
 
 Keep `com.apple.security.app-sandbox` in `NewFile/NewFileFinderExtension.entitlements`. `pluginkit -a` silently refuses to register an unsandboxed Finder Sync extension, regardless of signing identity. Because the extension is sandboxed, it also needs `com.apple.security.temporary-exception.files.absolute-path.read-write` to write into the folder the user right-clicks. Apple rejected that entitlement for the Mac App Store under guideline 2.4.5(i); it is fine for Developer ID distribution.
 
-## App Store Connect CLI
+## Notarization
 
-`@onmyway133/asc-cli@1.0.6` is installed locally and exposed via:
+`./script/release.sh` archives, exports, notarizes, staples, and packages a signed DMG.
 
-```sh
-npm run asc -- <command>
-```
-
-The default asc profile is configured and active:
-
-- Key ID: `H96X8J37ZU`
-- Issuer ID: `bc57f3ee-053c-4a19-a1d4-f2ff402adf19`
-- Credentials file: `/Users/xingshuhao/.asc/credentials.json`
-- Private key is stored in macOS Keychain by asc-cli.
-- Original local `.p8` path: `/Users/xingshuhao/Downloads/AuthKey_H96X8J37ZU.p8`
-
-Do not paste or commit `.p8` private key contents.
-
-Useful checks:
-
-```sh
-npm run asc -- auth list
-npm run asc -- apps list
-npm run asc -- signing bundle-ids list --output json
-npm run asc -- signing profiles list --output json
-```
+Notarization uses a keychain profile named `blank-notary`, created once with
+`xcrun notarytool store-credentials`. The App Store Connect API key id, issuer id, and `.p8`
+path are deliberately not recorded in this repository. Do not paste or commit `.p8` contents.
 
 ## Finder Extension Workflow
 
@@ -154,25 +136,6 @@ If clicking `New File` does not create a file, inspect logs:
 ```sh
 /usr/bin/log show --last 10m --predicate 'subsystem == "com.xingshuhao.NewFile.finder-extension"' --style compact
 ```
-
-## Node/npm Environment
-
-Node/npm are managed by mise. Current verified versions:
-
-- Node: `v25.9.0`
-- npm: `11.12.1`
-- `node` first hit: `/Users/xingshuhao/.local/share/mise/shims/node`
-- `npm` first hit: `/Users/xingshuhao/.local/share/mise/shims/npm`
-
-Hermes was previously uninstalled; stale `~/.local/bin/node` and `~/.local/bin/npm` symlinks were removed. `.zshrc` puts mise shims first.
-
-Recheck with:
-
-```sh
-zsh -lic 'node -v && npm -v && type -a node npm'
-```
-
-Ignore harmless oh-my-zsh cache-write warnings in restricted sandboxes; the important part is the first `node`/`npm` path.
 
 ## Current Caveats
 
