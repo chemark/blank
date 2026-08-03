@@ -24,6 +24,7 @@
 		BBE8BDB703C507F5DE06D691 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 579F3FB1EFD25F9AD7C9412E /* PrivacyInfo.xcprivacy */; };
 		CDFC735A1AC78E0F86DA8F42 /* NewFileFinderExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 45DAFD2292060A5FD928DE93 /* NewFileFinderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D393EF2DAF9CE6BCE627A720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B54127BCB974D35540E466 /* Assets.xcassets */; };
+		D6BADE7DA32D707F1F78DE04 /* EntitlementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528DBD14C3956DC6C73382B /* EntitlementsTests.swift */; };
 		D7C23D64DFF9D2327D4E17AD /* TuistStrings+NewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81993EA499AE0BA20CCAE83F /* TuistStrings+NewFile.swift */; };
 		E143281B15A4F82E1B1B082A /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A4E21F69B57D9286BE539 /* FinderSync.swift */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,7 @@
 		E1E160F50E4DF04E1F5D8892 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2256947477AE13AEBF827E9 /* TuistAssets+NewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+NewFile.swift"; sourceTree = "<group>"; };
 		E2262275013D999B531F5E7D /* NewFileFinderExtension-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "NewFileFinderExtension-Info.plist"; sourceTree = "<group>"; };
+		E528DBD14C3956DC6C73382B /* EntitlementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitlementsTests.swift; sourceTree = "<group>"; };
 		E8354B95C82C9BC7E20E100B /* AppIconSource.svg */ = {isa = PBXFileReference; path = AppIconSource.svg; sourceTree = "<group>"; };
 		E86FAE07A9D12BA99F79D995 /* NewFileFinderExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NewFileFinderExtension.entitlements; sourceTree = "<group>"; };
 		F9D088EC9C72E060B0E30E4D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		A3EDDCC2755FD7796592E5F7 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E528DBD14C3956DC6C73382B /* EntitlementsTests.swift */,
 				46B31B73BB3FD06FC72A9067 /* FileCreationServiceTests.swift */,
 			);
 			path = Tests;
@@ -407,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				304442B0ECDCAEAA48B7C91E /* FileCreationService.swift in Sources */,
+				D6BADE7DA32D707F1F78DE04 /* EntitlementsTests.swift in Sources */,
 				B5F733D4C87D577D4C684228 /* FileCreationServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
