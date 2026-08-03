@@ -11,7 +11,7 @@ that one gap and does nothing else.
 
 ## Install
 
-Download the latest DMG from [Releases](https://github.com/OWNER/REPO/releases/latest),
+Download the latest DMG from [Releases](https://github.com/chemark/blank/releases/latest),
 drag Blank to Applications, then **enable the extension**:
 
 > System Settings → General → Login Items & Extensions → Finder Extensions → turn on **Blank**
