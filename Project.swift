@@ -4,7 +4,7 @@ let appBundleId = "com.xingshuhao.NewFile"
 let extensionBundleId = "\(appBundleId).FinderExtension"
 
 let sharedSettings: SettingsDictionary = [
-    "MACOSX_DEPLOYMENT_TARGET": "26.0",
+    "MACOSX_DEPLOYMENT_TARGET": "13.0",
     "SWIFT_VERSION": "6.0",
     "ENABLE_USER_SCRIPT_SANDBOXING": "YES",
     "DEVELOPMENT_TEAM": "6SKPUQN55Z",
@@ -60,7 +60,7 @@ let project = Project(
             destinations: [.mac],
             product: .app,
             bundleId: appBundleId,
-            deploymentTargets: .macOS("26.0"),
+            deploymentTargets: .macOS("13.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "Blank",
                 "CFBundleShortVersionString": "$(MARKETING_VERSION)",
@@ -80,7 +80,7 @@ let project = Project(
                 .target(name: "NewFileFinderExtension"),
             ],
             settings: .settings(
-                base: ["PRODUCT_NAME": "Blank", "INFOPLIST_KEY_LSMinimumSystemVersion": "26.0"],
+                base: ["PRODUCT_NAME": "Blank", "INFOPLIST_KEY_LSMinimumSystemVersion": "13.0"],
                 debug: appSigningSettings,
                 release: appDistributionSettings
             )
@@ -90,7 +90,7 @@ let project = Project(
             destinations: [.mac],
             product: .appExtension,
             bundleId: extensionBundleId,
-            deploymentTargets: .macOS("26.0"),
+            deploymentTargets: .macOS("13.0"),
             infoPlist: .extendingDefault(with: [
                 "CFBundleDisplayName": "Blank",
                 "CFBundleShortVersionString": "$(MARKETING_VERSION)",
@@ -110,7 +110,7 @@ let project = Project(
             ],
             entitlements: "NewFile/NewFileFinderExtension.entitlements",
             settings: .settings(
-                base: ["PRODUCT_NAME": "NewFileFinderExtension", "INFOPLIST_KEY_LSMinimumSystemVersion": "26.0"],
+                base: ["PRODUCT_NAME": "NewFileFinderExtension", "INFOPLIST_KEY_LSMinimumSystemVersion": "13.0"],
                 debug: extensionSigningSettings,
                 release: extensionDistributionSettings
             )
@@ -120,7 +120,7 @@ let project = Project(
             destinations: [.mac],
             product: .unitTests,
             bundleId: "\(appBundleId).tests",
-            deploymentTargets: .macOS("26.0"),
+            deploymentTargets: .macOS("13.0"),
             infoPlist: .default,
             sources: [
                 "NewFile/Tests/**",
