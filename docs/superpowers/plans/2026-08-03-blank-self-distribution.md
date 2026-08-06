@@ -989,8 +989,7 @@ Expected: JSON 内容正确返回，站点返回 `HTTP/2 200`。
 
 不在本计划范围内，但已知需要跟进：
 
-- macOS 13/14/15 真机验证。当前只做过本机（macOS 26）编译。
-  最可能的弱点是 `NewFile/App/ContentView.swift` 中的
-  `x-apple.systempreferences` URL 在旧系统上打不开。
-- App Store Connect 中被拒的提交 `924cbb5f` 如何处理：取消提交，或保留不动。
+- ~~macOS 13/14/15 真机验证~~、~~`ExtensionSettingsOpener` 加固~~：
+  已迁移到 `docs/roadmap.md`，本计划不再跟踪。
+- ~~App Store Connect 中被拒的提交 `924cbb5f`~~：已取消，状态「已移除」。
 - ~~发版流程文档化~~：已完成，见 `AGENTS.md` 的 `## Release Workflow`。

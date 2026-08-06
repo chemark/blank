@@ -39,6 +39,7 @@ injection into Finder.
 - Landing page: `site/`
 - Codex run button config: `.codex/environments/environment.toml`
 - Design docs and implementation plans: `docs/superpowers/`
+- Known work not yet scheduled: `docs/roadmap.md`
 
 ## Development Commands
 
