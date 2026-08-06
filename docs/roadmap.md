@@ -1,8 +1,12 @@
 # Roadmap
 
-Known work, not yet scheduled. Items are removed when done, not marked done.
+Known work, not yet scheduled. When an item ships, move it to Done with the date rather
+than deleting it — the reasoning behind a decision usually outlives the change itself, and
+the next person to touch that code will want it.
 
-## Make ExtensionSettingsOpener version-proof
+## Open
+
+### Make ExtensionSettingsOpener version-proof
 
 `NewFile/App/ContentView.swift` opens System Settings with a versioned anchor:
 
@@ -25,7 +29,7 @@ is what does not work.
 
 Deployment target is macOS 13, so any solution has to hold from Ventura onward.
 
-## Verify on macOS 13 / 14 / 15
+### Verify on macOS 13 / 14 / 15
 
 The 13.0 deployment target has only been compile-verified on the development machine
 (macOS 26). No build has ever run on an older system.
@@ -41,3 +45,7 @@ Priority order when this happens:
    `temporary-exception.files.absolute-path.read-write` differs across releases.
 2. The extension registers and can be enabled in System Settings.
 3. Whether the Open Extension Settings button lands on the right pane.
+
+## Done
+
+Nothing yet.
