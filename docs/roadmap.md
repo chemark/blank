@@ -46,6 +46,18 @@ Priority order when this happens:
 2. The extension registers and can be enabled in System Settings.
 3. Whether the Open Extension Settings button lands on the right pane.
 
+### Limit Cloudflare builds to site changes
+
+Every push to `main` triggers a Pages deployment, including commits that only touch Swift
+code or documentation. The site content is identical in those cases, so the deployment
+history fills with entries that changed nothing.
+
+Cosmetic only — nothing breaks, and the lowest priority item here.
+
+Fix with build watch paths in the Pages project settings, scoped to `site/`. Verify
+afterwards that a real change under `site/` still deploys: a filter that silently stops
+deploying the site is worse than the noise it removes.
+
 ## Done
 
 Nothing yet.
