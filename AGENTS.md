@@ -79,6 +79,9 @@ lost and it no longer appears in `security find-identity -v -p codesigning`.
 Mac App Store distribution is abandoned. Do not restore the `3rd Party Mac Developer Application`
 identity or the Mac App Store provisioning profiles.
 
+Do not reconfigure Node, npm, Bundle IDs, or signing certificates unless a verification command
+proves the existing setup is broken.
+
 Do not switch back to ad-hoc signing for Finder Sync testing. `pluginkit -a` silently refuses to register an ad-hoc signed extension; the signature must chain to Apple Root CA.
 
 Keep `ENABLE_HARDENED_RUNTIME` on. Notarization requires it, and it is verified to coexist with
@@ -170,6 +173,5 @@ If clicking `New File` does not create a file, inspect logs:
 
 ## Current Caveats
 
-- The repository is initialized, but many project files are still untracked. Do not assume a clean committed baseline.
 - Finder Sync behavior requires signed builds, installation to `/Applications/Blank.app`, pluginkit registration, extension enablement, and Finder restart.
 - The host app UI no longer manages file-type toggles. `TemplatePreferences` and old fixed-template code may still exist in shared/tests for legacy coverage; do not revive that UX unless explicitly requested.
